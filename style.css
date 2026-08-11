@@ -145,3 +145,238 @@ footer{background:#0a625a;color:#fff}
   .principles{grid-template-columns:1fr;padding:13px 15px}
   .footerReference{grid-template-columns:1fr}.footerReference>div:last-child{grid-column:auto}
 }
+
+
+/* v13 - sử dụng ảnh Bệnh viện do người dùng cung cấp */
+.heroHospital{height:274px;position:relative;align-self:stretch;overflow:hidden;display:flex;align-items:flex-end;justify-content:flex-end}
+.heroHospitalImage{width:100%;height:100%;display:block;object-fit:cover;object-position:center 38%;filter:saturate(.92) contrast(.98);clip-path:polygon(8% 0,100% 0,100% 100%,0 100%,0 18%);}
+.heroHospital:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(231,246,243,.95) 0%,rgba(231,246,243,.48) 18%,rgba(231,246,243,0) 48%),linear-gradient(0deg,rgba(231,246,243,.10),transparent 45%);}
+@media(max-width:900px){.heroHospital{height:230px}.heroHospitalImage{object-position:center 38%;clip-path:none}.heroHospital:after{background:linear-gradient(90deg,rgba(231,246,243,.78),rgba(231,246,243,.05) 65%),linear-gradient(0deg,rgba(231,246,243,.15),transparent 55%)}}
+@media(max-width:620px){.heroHospital{height:190px}.heroHospitalImage{object-position:center 38%}}
+
+/* =========================================================
+   v14 — Design system đồng bộ với Trang chủ v13
+   ========================================================= */
+:root{
+  --dls:#08756b;
+  --dls-dark:#073f3b;
+  --dls-soft:#eaf5f3;
+  --line:#d9e7e4;
+  --text:#173b3b;
+  --muted:#6d7f80;
+  --page:#f5f9f8;
+}
+body{background:var(--page)}
+.page:not(#page-home){background:linear-gradient(180deg,#f3f9f7 0,#fff 360px)}
+.pageInner{width:min(1180px,calc(100% - 36px));padding:34px 0 62px;margin:auto}
+
+/* Tiêu đề module */
+.moduleHero{
+  min-height:142px;
+  padding:25px 28px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 10px 30px rgba(7,63,59,.06);
+}
+.moduleHero:after{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  border-radius:50%;
+  right:-70px;top:-105px;
+  background:rgba(255,255,255,.55);
+  pointer-events:none;
+}
+.moduleHero>div:first-child{position:relative;z-index:2}
+.moduleHero h1{
+  font-size:32px;
+  line-height:1.12;
+  letter-spacing:-.8px;
+  margin:0 0 5px;
+  color:var(--text);
+}
+.moduleHero p{margin:0;max-width:700px;font-size:12px;color:var(--muted)}
+.moduleHero .eyebrow{margin-bottom:7px}
+.moduleBadge{
+  width:62px;height:62px;min-width:62px;border-radius:18px;
+  display:grid;place-items:center;
+  font-size:17px;font-weight:900;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(7,63,59,.10);
+  position:relative;z-index:2;
+}
+.moduleHero-teal{background:linear-gradient(120deg,#edf8f5,#fff)}
+.moduleHero-teal .moduleBadge{color:#08756b}
+.moduleHero-blue{background:linear-gradient(120deg,#eff7fd,#fff)}
+.moduleHero-blue .moduleBadge{color:#197bc0}
+.moduleHero-purple{background:linear-gradient(120deg,#f7f2fc,#fff)}
+.moduleHero-purple .moduleBadge{color:#7046aa}
+.moduleHero-orange{background:linear-gradient(120deg,#fff7eb,#fff)}
+.moduleHero-orange .moduleBadge{color:#e97800}
+.moduleHero-cyan{background:linear-gradient(120deg,#effafd,#fff)}
+.moduleHero-cyan .moduleBadge{color:#13879a}
+
+/* Card system */
+.toolGrid,.antibioticGrid,.docsGrid{gap:16px}
+.toolCard,.infoPanel,.docsGrid a{
+  min-height:250px;
+  padding:22px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  box-shadow:0 7px 24px rgba(7,63,59,.045);
+  transition:transform .16s,box-shadow .16s,border-color .16s;
+  position:relative;
+  overflow:hidden;
+}
+.toolCard:before,.infoPanel:before,.docsGrid a:before{
+  content:"";
+  position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:#08756b;
+}
+.toolCard:hover,.infoPanel:hover,.docsGrid a:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 32px rgba(7,63,59,.10);
+}
+.toolCard>span,.infoPanel>span,.docsGrid span{
+  display:inline-grid;place-items:center;
+  width:34px;height:34px;border-radius:9px;
+  background:#eaf5f3;color:#08756b;
+  margin-bottom:15px;
+}
+.toolCard>b{
+  background:#eaf5f3;
+  padding:7px 10px;
+  border-radius:7px;
+  font-size:10px;
+}
+.toolCard h3,.infoPanel h3,.docsGrid h3{font-size:17px;margin:14px 0 8px;color:#173b3b}
+.toolCard p,.infoPanel p,.docsGrid p{font-size:11px;line-height:1.65;color:#718183;min-height:58px}
+.toolCard strong,.infoPanel button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:7px;
+  min-height:34px;
+  border-radius:7px;
+  padding:0 14px;
+  background:#08756b;
+  color:#fff;
+  border:0;
+  font-size:10px;
+  font-weight:900;
+}
+.infoPanel button:hover{background:#065f58}
+
+/* Tra cứu */
+.searchLayout{grid-template-columns:1.35fr .65fr;gap:16px}
+.searchBox{
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 8px 25px rgba(7,63,59,.05);
+}
+.searchRow{margin-top:12px}
+.searchRow input{
+  height:48px;
+  border-radius:8px;
+  background:#fbfdfc;
+}
+.searchRow input:focus{outline:2px solid #c8e5e0;border-color:#08756b}
+.searchRow button{
+  min-width:105px;
+  border-radius:8px;
+  background:#08756b;
+}
+.searchTopics{grid-template-columns:1fr;gap:10px}
+.searchTopics div{
+  min-height:78px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-radius:13px;
+  padding:16px 18px;
+  box-shadow:0 5px 18px rgba(7,63,59,.04);
+}
+.searchTopics div:before{
+  content:"";
+  width:5px;height:34px;
+  border-radius:4px;
+  background:#1e8bd0;
+  position:absolute;
+}
+
+/* Kháng sinh */
+.antibioticGrid .infoPanel:nth-child(1):before{background:#7448b5}
+.antibioticGrid .infoPanel:nth-child(2):before{background:#08756b}
+.antibioticGrid .infoPanel:nth-child(3):before{background:#1e8bd0}
+.antibioticGrid .infoPanel:nth-child(1)>span{background:#f0eafa;color:#7448b5}
+.antibioticGrid .infoPanel:nth-child(2)>span{background:#eaf5f3;color:#08756b}
+.antibioticGrid .infoPanel:nth-child(3)>span{background:#eaf4fb;color:#1e8bd0}
+
+/* Ứng dụng */
+.appPage .moduleHero{margin-bottom:14px}
+.appTabs{
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:12px;
+}
+.appTab{
+  min-height:82px;
+  border-radius:12px;
+  padding:13px 15px;
+  box-shadow:0 5px 18px rgba(7,63,59,.035);
+  transition:.15s;
+}
+.appTab.active{
+  background:#08756b;
+  box-shadow:0 10px 24px rgba(7,63,59,.16);
+}
+.appTab:hover{transform:translateY(-1px)}
+.appPanel{background:transparent}
+.panelHead{
+  min-height:55px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  background:#fff;
+}
+.appFrameWrap{
+  box-shadow:0 14px 34px rgba(7,63,59,.08);
+}
+
+/* Tài liệu */
+.docsGrid{grid-template-columns:repeat(3,1fr)}
+.docsGrid a{
+  min-height:215px;
+}
+.docsGrid a:before{background:#169bb0}
+.docsGrid span{background:#e8f7f9;color:#13879a}
+.docsGrid h3{margin-top:13px}
+
+/* Mobile */
+@media(max-width:900px){
+  .pageInner{padding-top:26px}
+  .moduleHero{min-height:125px;padding:21px}
+  .moduleHero h1{font-size:28px}
+  .moduleBadge{width:54px;height:54px;min-width:54px}
+  .searchLayout{grid-template-columns:1fr}
+  .searchTopics{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:620px){
+  .pageInner{width:calc(100% - 28px);padding:22px 0 45px}
+  .moduleHero{padding:19px;border-radius:14px;align-items:flex-start}
+  .moduleHero h1{font-size:25px}
+  .moduleHero p{font-size:11px}
+  .moduleBadge{width:45px;height:45px;min-width:45px;border-radius:13px;font-size:13px}
+  .toolGrid,.antibioticGrid,.docsGrid{grid-template-columns:1fr}
+  .searchTopics{grid-template-columns:1fr}
+  .appTabs{grid-template-columns:1fr}
+  .panelHead{align-items:flex-start;flex-direction:column}
+  .reportActions{width:100%;flex-wrap:wrap}
+}

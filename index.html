@@ -45,17 +45,7 @@
         <p>Tập trung các công cụ, ứng dụng, chức năng tra cứu và tài liệu phục vụ hoạt động Dược lâm sàng, hướng tới sử dụng thuốc <b>an toàn – hợp lý – hiệu quả</b> trong bệnh viện.</p>
       </div>
       <div class="heroHospital" aria-hidden="true">
-        <div class="skyOrb"></div>
-        <div class="hospitalBuilding">
-          <div class="hospitalTop"><span>+</span><b>BỆNH VIỆN ĐA KHOA<br>THÀNH PHỐ VINH</b></div>
-          <div class="hospitalWindows">
-            <i></i><i></i><i></i><i></i><i></i>
-            <i></i><i></i><i></i><i></i><i></i>
-            <i></i><i></i><i></i><i></i><i></i>
-          </div>
-          <div class="hospitalBase"></div>
-        </div>
-        <div class="hospitalTrees"><span></span><span></span><span></span><span></span></div>
+        <img src="benh-vien-dls.png" alt="Bệnh viện" class="heroHospitalImage">
       </div>
     </div>
   </div>
@@ -131,7 +121,7 @@
 
 <section class="page" id="page-tools">
   <div class="wrap pageInner">
-    <div class="pageTitle"><span class="eyebrow">CÔNG CỤ CHUYÊN MÔN</span><h1>Công cụ Dược lâm sàng</h1><p>Tập hợp các công cụ tính toán và hỗ trợ thực hành.</p></div>
+    <div class="moduleHero moduleHero-teal"><div><span class="eyebrow">CÔNG CỤ CHUYÊN MÔN</span><h1>Công cụ Dược lâm sàng</h1><p>Tập hợp các công cụ tính toán và hỗ trợ thực hành chuyên môn.</p></div><div class="moduleBadge">01</div></div>
     <div class="toolGrid">
       <a class="toolCard" onclick="coming('CrCl')"><span>01</span><b>CrCl</b><h3>Độ thanh thải creatinin</h3><p>Ước tính CrCl hỗ trợ đánh giá chức năng thận và sử dụng thuốc.</p><strong>Mở công cụ →</strong></a>
       <a class="toolCard" onclick="coming('eGFR')"><span>02</span><b>eGFR</b><h3>Ước tính eGFR</h3><p>Tính toán eGFR từ các thông số lâm sàng cần thiết.</p><strong>Mở công cụ →</strong></a>
@@ -142,7 +132,7 @@
 
 <section class="page" id="page-search">
   <div class="wrap pageInner">
-    <div class="pageTitle"><span class="eyebrow">TRA CỨU CHUYÊN MÔN</span><h1>Tra cứu</h1><p>Không gian dành cho tra cứu thuốc, hoạt chất, ICD và dữ liệu chuyên môn.</p></div>
+    <div class="moduleHero moduleHero-blue"><div><span class="eyebrow">TRA CỨU CHUYÊN MÔN</span><h1>Tra cứu Dược lâm sàng</h1><p>Tra cứu thuốc, hoạt chất, ICD và các thông tin phục vụ thực hành.</p></div><div class="moduleBadge">02</div></div>
     <div class="searchLayout">
       <div class="searchBox">
         <label>TÌM KIẾM</label>
@@ -156,7 +146,7 @@
 
 <section class="page" id="page-antibiotic">
   <div class="wrap pageInner">
-    <div class="pageTitle"><span class="eyebrow">KHÁNG SINH</span><h1>Hỗ trợ sử dụng kháng sinh</h1><p>Nhóm các chức năng liên quan đến lựa chọn và sử dụng kháng sinh.</p></div>
+    <div class="moduleHero moduleHero-purple"><div><span class="eyebrow">KHÁNG SINH</span><h1>Hỗ trợ sử dụng kháng sinh</h1><p>Các chức năng hỗ trợ lựa chọn, tra cứu và sử dụng kháng sinh an toàn, hợp lý.</p></div><div class="moduleBadge">03</div></div>
     <div class="antibioticGrid">
       <div class="infoPanel"><span>01</span><h3>Lựa chọn kháng sinh</h3><p>Hỗ trợ tra cứu và định hướng lựa chọn theo bệnh cảnh, vi khuẩn và các nguồn bằng chứng.</p><button onclick="coming('Lựa chọn kháng sinh')">Mở chức năng</button></div>
       <div class="infoPanel"><span>02</span><h3>Hiệu chỉnh liều theo thận</h3><p>Truy cập ứng dụng chuyên dụng để hiệu chỉnh liều kháng sinh theo chức năng thận.</p><button onclick="showPage('apps');switchApp('renal')">Mở ứng dụng</button></div>
@@ -167,7 +157,7 @@
 
 <section class="page" id="page-apps">
   <div class="wrap pageInner appPage">
-    <div class="pageTitle compact"><span class="eyebrow">ỨNG DỤNG DƯỢC LÂM SÀNG</span><h1>Ứng dụng chuyên môn</h1><p>Chọn một ứng dụng. Chỉ ứng dụng đang chọn được hiển thị.</p></div>
+    <div class="moduleHero moduleHero-orange compact"><div><span class="eyebrow">ỨNG DỤNG DƯỢC LÂM SÀNG</span><h1>Ứng dụng chuyên môn</h1><p>Chọn một ứng dụng để sử dụng trực tiếp trong Cổng thông tin DLS.</p></div><div class="moduleBadge">04</div></div>
     <div class="appTabs">
       <button class="appTab active" data-app="report" onclick="switchApp('report')"><span>01</span><b>Báo cáo thuốc ngoại trú</b><small>Tổng hợp báo cáo</small></button>
       <button class="appTab" data-app="renal" onclick="switchApp('renal')"><span>02</span><b>Hiệu chỉnh liều kháng sinh</b><small>Theo chức năng thận</small></button>
@@ -190,7 +180,7 @@
 
 <section class="page" id="page-docs">
   <div class="wrap pageInner">
-    <div class="pageTitle"><span class="eyebrow">THƯ VIỆN CHUYÊN MÔN</span><h1>Tài liệu</h1><p>Quy trình, hướng dẫn và văn bản phục vụ công tác Dược lâm sàng.</p></div>
+    <div class="moduleHero moduleHero-cyan"><div><span class="eyebrow">THƯ VIỆN CHUYÊN MÔN</span><h1>Tài liệu Dược lâm sàng</h1><p>Quy trình, hướng dẫn, văn bản và tài liệu phục vụ công tác Dược lâm sàng.</p></div><div class="moduleBadge">05</div></div>
     <div class="docsGrid"><a onclick="coming('Hướng dẫn')"><span>01</span><h3>Hướng dẫn sử dụng thuốc</h3><p>Kho tài liệu chuyên môn phục vụ thực hành.</p></a><a onclick="coming('Quy trình')"><span>02</span><h3>Quy trình Dược lâm sàng</h3><p>SOP, quy trình và biểu mẫu hoạt động.</p></a><a onclick="coming('Văn bản')"><span>03</span><h3>Văn bản & quy định</h3><p>Hệ thống hóa các văn bản liên quan đến công tác Dược.</p></a></div>
   </div>
 </section>
