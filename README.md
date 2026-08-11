@@ -1,12 +1,10 @@
-# Cổng thông tin DLS — v11
+# Cổng thông tin DLS — v12
 
-CỔNG THÔNG TIN DLS
-Công cụ hỗ trợ Dược lâm sàng
-Khoa Dược – Bệnh viện Đa khoa Thành phố Vinh
-
-v11:
-- Cân lại bố cục trang chủ theo hai cột cân đối.
-- Thẻ "Truy cập nhanh" thẳng hàng với phần giới thiệu chính.
-- Đưa phần giới thiệu Khoa Dược/DLS ra khỏi khối hero để không làm lệch chiều cao.
-- Đưa hai nút "Mở ứng dụng chuyên môn" và "Xem công cụ" thành một hàng hành động riêng, căn giữa và nổi bật.
-- Giữ nguyên menu, các module và 3 Apps Script.
+Trang chủ được thiết kế lại theo bố cục tham chiếu:
+- Header bệnh viện + logo + menu ngang
+- Hero có nhận diện Cổng thông tin DLS và hình minh họa bệnh viện
+- 3 thẻ giới thiệu cân đều
+- 5 nhóm chức năng truy cập nhanh, màu phân nhóm
+- Dải nguyên tắc: An toàn / Hợp lý / Hiệu quả / Phối hợp
+- Footer thông tin Khoa Dược
+- Giữ nguyên các trang Công cụ / Tra cứu / Kháng sinh / Ứng dụng / Tài liệu và 3 Apps Script.
