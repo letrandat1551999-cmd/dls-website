@@ -1,14 +1,17 @@
-# DLS Website v7
+# DLS Website v8
 
-Bản v7:
-- Giữ 3 ứng dụng trong 3 tab ngang.
-- Sửa logic chuyển tab/tải iframe.
-- Thêm logo chính thức của Bệnh viện Đa khoa Thành phố Vinh.
-- Giảm tối đa biểu tượng kiểu emoji; dùng số/chữ và giao diện tối giản.
-- Ba URL Apps Script đã cấu hình:
+Cổng Dược lâm sàng dạng module:
+- Không còn trang dài phải cuộn qua toàn bộ nội dung.
+- Menu chính mở từng mục riêng.
+- Ứng dụng có 3 tab ngang:
   1. Báo cáo thuốc ngoại trú
   2. Hiệu chỉnh liều kháng sinh theo chức năng thận
   3. Quản lý BN sử dụng SGLT2 – suy tim/suy thận
+- Logo bệnh viện được đóng gói trong logo_vinh.png.
 
-Upload các file trong thư mục này vào repository GitHub Pages:
-index.html, style.css, script.js, logo_vinh.png, README.md
+Upload 5 file vào repository GitHub Pages:
+index.html
+style.css
+script.js
+logo_vinh.png
+README.md
