@@ -1,34 +1,13 @@
-# Website Dược lâm sàng – BVĐK Thành phố Vinh
+# Dược lâm sàng – BVĐK Thành phố Vinh (v2)
 
-Website tĩnh, có thể triển khai miễn phí bằng GitHub Pages.
+Bản giao diện v2 cho GitHub Pages.
 
-## Cấu trúc
+Các file:
+- index.html
+- style.css
+- script.js
 
-- `index.html` – giao diện trang chủ
-- `style.css` – toàn bộ giao diện
-- `script.js` – JavaScript và cấu hình Apps Script
+Sau khi upload lên GitHub, website sẽ tự cập nhật.
 
-## Kết nối Apps Script
-
-Mở `script.js` và thay:
-
-const APPS_SCRIPT_URL = "";
-
-bằng URL Web App của Google Apps Script:
-
-https://script.google.com/macros/s/XXXXXXXX/exec
-
-Sau đó bấm "Báo cáo thuốc ngoại trú" để mở ứng dụng.
-
-## Triển khai GitHub Pages
-
-1. Tạo repository trên GitHub, ví dụ `dls-website`.
-2. Upload 3 file `index.html`, `style.css`, `script.js`.
-3. Vào Settings → Pages.
-4. Source: Deploy from a branch.
-5. Branch: `main`, folder `/ (root)`.
-6. Save.
-7. GitHub sẽ cấp URL dạng:
-   `https://TEN-GITHUB-CUA-BAN.github.io/dls-website/`
-
-Chưa cần mua domain. Sau này có thể gắn custom domain.
+Kết nối Apps Script:
+mở script.js và thay APPS_SCRIPT_URL bằng URL Web App /exec.
