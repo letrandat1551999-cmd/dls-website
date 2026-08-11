@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cổng thông tin Dược lâm sàng - Bệnh viện Đa khoa Thành phố Vinh">
+  <title>Dược lâm sàng | BVĐK Thành phố Vinh</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand-mini">BVĐK THÀNH PHỐ VINH</div>
+        <div class="top-links">
+          <a href="#gioi-thieu">Giới thiệu</a>
+          <a href="#lien-he">Liên hệ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-header">
+      <div class="container header-inner">
+        <a class="brand" href="#trang-chu" aria-label="Trang chủ">
+          <div class="logo-mark">DLS</div>
+          <div>
+            <div class="brand-title">DƯỢC LÂM SÀNG</div>
+            <div class="brand-subtitle">Bệnh viện Đa khoa Thành phố Vinh</div>
+          </div>
+        </a>
+
+        <button class="menu-toggle" aria-label="Mở menu">☰</button>
+
+        <nav class="nav">
+          <a class="active" href="#trang-chu">Trang chủ</a>
+          <a href="#cong-cu">Công cụ</a>
+          <a href="#tra-cuu">Tra cứu</a>
+          <a href="#khang-sinh">Kháng sinh</a>
+          <a href="#bao-cao">Báo cáo</a>
+          <a href="#tai-lieu">Tài liệu</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="trang-chu">
+    <section class="hero">
+      <div class="hero-pattern"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow">CỔNG THÔNG TIN DƯỢC LÂM SÀNG</div>
+          <h1>Thông tin thuốc<br><span>chính xác & hữu ích</span></h1>
+          <p>
+            Công cụ hỗ trợ, thông tin thuốc, tài liệu chuyên môn và các
+            hoạt động Dược lâm sàng phục vụ nhân viên y tế.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#cong-cu">Khám phá công cụ <span>→</span></a>
+            <a class="btn btn-light" href="#tai-lieu">Xem tài liệu</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-label">TRUY CẬP NHANH</div>
+          <a href="#cong-cu"><span class="quick-icon">⌕</span><div><b>Công cụ Dược lâm sàng</b><small>Tính toán và hỗ trợ chuyên môn</small></div><span>→</span></a>
+          <a href="#tra-cuu"><span class="quick-icon">▤</span><div><b>Tra cứu thuốc</b><small>Thông tin và tài liệu liên quan</small></div><span>→</span></a>
+          <a href="#bao-cao"><span class="quick-icon">▥</span><div><b>Báo cáo thuốc ngoại trú</b><small>Ứng dụng báo cáo trực tuyến</small></div><span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cong-cu">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">TIỆN ÍCH</div>
+            <h2>Công cụ Dược lâm sàng</h2>
+          </div>
+          <a class="view-all" href="#cong-cu">Xem tất cả →</a>
+        </div>
+
+        <div class="cards tools">
+          <a class="tool-card" href="#" onclick="showNotice('Công cụ CrCl sẽ được tích hợp ở bước tiếp theo.'); return false;">
+            <div class="tool-icon">CrCl</div>
+            <h3>Độ thanh thải creatinin</h3>
+            <p>Ước tính CrCl và hỗ trợ đánh giá chức năng thận.</p>
+            <span>Chọn công cụ →</span>
+          </a>
+          <a class="tool-card" href="#" onclick="showNotice('Công cụ eGFR sẽ được tích hợp ở bước tiếp theo.'); return false;">
+            <div class="tool-icon">eGFR</div>
+            <h3>Ước tính eGFR</h3>
+            <p>Tính toán eGFR phục vụ đánh giá chức năng thận.</p>
+            <span>Chọn công cụ →</span>
+          </a>
+          <a class="tool-card" href="#" onclick="showNotice('Công cụ Albumin sẽ được tích hợp ở bước tiếp theo.'); return false;">
+            <div class="tool-icon">Alb</div>
+            <h3>Tính Albumin cần bù</h3>
+            <p>Công cụ tính nhanh theo thông số người bệnh.</p>
+            <span>Chọn công cụ →</span>
+          </a>
+          <a class="tool-card" href="#bao-cao">
+            <div class="tool-icon">BC</div>
+            <h3>Báo cáo thuốc ngoại trú</h3>
+            <p>Truy cập ứng dụng Apps Script báo cáo thuốc hiện có.</p>
+            <span>Mở ứng dụng →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="tra-cuu">
+      <div class="container split-section">
+        <div>
+          <div class="eyebrow">TRA CỨU</div>
+          <h2>Thông tin thuốc & chuyên môn</h2>
+          <p class="lead">
+            Khu vực dành cho các nội dung tra cứu và tài liệu hỗ trợ thực hành
+            Dược lâm sàng. Các module sẽ được bổ sung dần trong quá trình xây dựng website.
+          </p>
+          <div class="feature-list">
+            <div><span>✓</span> Tra cứu thuốc và hoạt chất</div>
+            <div><span>✓</span> Thông tin kháng sinh</div>
+            <div><span>✓</span> Tương tác thuốc</div>
+            <div><span>✓</span> ICD và các dữ liệu liên quan</div>
+          </div>
+        </div>
+        <div class="search-panel">
+          <div class="search-title">Tìm kiếm nhanh</div>
+          <div class="search-box">
+            <input id="searchInput" type="search" placeholder="Nhập tên thuốc, hoạt chất, ICD...">
+            <button onclick="quickSearch()">Tìm kiếm</button>
+          </div>
+          <div id="searchMessage" class="search-message">Hệ thống tra cứu sẽ được kết nối ở bước tiếp theo.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="khang-sinh">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">KHÁNG SINH</div>
+            <h2>Hỗ trợ sử dụng kháng sinh</h2>
+          </div>
+        </div>
+        <div class="antibiotic-banner">
+          <div>
+            <div class="banner-label">ĐỊNH HƯỚNG</div>
+            <h3>Kháng sinh đồ · Guideline · Kinh nghiệm lâm sàng</h3>
+            <p>
+              Khu vực dành cho các công cụ và tài liệu hỗ trợ lựa chọn kháng sinh,
+              tra cứu vi khuẩn và cảnh báo an toàn.
+            </p>
+          </div>
+          <a class="btn btn-light" href="#" onclick="showNotice('Module Kháng sinh sẽ được tích hợp sau.'); return false;">Khám phá →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="bao-cao">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">ỨNG DỤNG</div>
+            <h2>Báo cáo thuốc ngoại trú</h2>
+          </div>
+          <span class="status-badge">Apps Script</span>
+        </div>
+        <div class="app-card">
+          <div class="app-icon">BC</div>
+          <div class="app-info">
+            <h3>Tổng hợp Báo cáo Thuốc Ngoại trú</h3>
+            <p>
+              Ứng dụng hiện có của bạn sẽ được nhúng vào đây bằng URL Web App
+              của Google Apps Script.
+            </p>
+          </div>
+          <a class="btn btn-primary" id="appsScriptLink" href="#" onclick="openAppsScript(); return false;">Mở ứng dụng →</a>
+        </div>
+        <div class="integration-note">
+          <b>Chưa cấu hình URL Apps Script.</b>
+          Mở <code>script.js</code> và thay <code>APPS_SCRIPT_URL</code> bằng URL Web App dạng <code>/exec</code>.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tai-lieu">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">THƯ VIỆN</div>
+            <h2>Tài liệu & quy trình</h2>
+          </div>
+          <a class="view-all" href="#tai-lieu">Xem tất cả →</a>
+        </div>
+        <div class="document-grid">
+          <a class="document-card" href="#">
+            <span class="doc-type">HƯỚNG DẪN</span>
+            <h3>Hướng dẫn sử dụng thuốc</h3>
+            <p>Kho tài liệu chuyên môn sẽ được cập nhật tại đây.</p>
+            <span class="read-more">Xem tài liệu →</span>
+          </a>
+          <a class="document-card" href="#">
+            <span class="doc-type">QUY TRÌNH</span>
+            <h3>Quy trình Dược lâm sàng</h3>
+            <p>Các quy trình, SOP và biểu mẫu phục vụ hoạt động chuyên môn.</p>
+            <span class="read-more">Xem tài liệu →</span>
+          </a>
+          <a class="document-card" href="#">
+            <span class="doc-type">VĂN BẢN</span>
+            <h3>Văn bản & quy định</h3>
+            <p>Hệ thống hóa các văn bản liên quan đến công tác Dược.</p>
+            <span class="read-more">Xem tài liệu →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="gioi-thieu">
+      <div class="container about-inner">
+        <div>
+          <div class="eyebrow">VỀ WEBSITE</div>
+          <h2>Cổng thông tin Dược lâm sàng</h2>
+          <p>
+            Website được xây dựng theo hướng đơn giản, dễ sử dụng và có thể
+            mở rộng dần bằng các công cụ Web App, dữ liệu và tài liệu chuyên môn.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div><strong>01</strong><span>Cổng thông tin</span></div>
+          <div><strong>∞</strong><span>Khả năng mở rộng</span></div>
+          <div><strong>0đ</strong><span>Chi phí hosting</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="lien-he">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">DƯỢC LÂM SÀNG</div>
+        <p>Bệnh viện Đa khoa Thành phố Vinh</p>
+      </div>
+      <div>
+        <h4>Điều hướng</h4>
+        <a href="#cong-cu">Công cụ</a>
+        <a href="#tra-cuu">Tra cứu</a>
+        <a href="#bao-cao">Báo cáo</a>
+      </div>
+      <div>
+        <h4>Tài liệu</h4>
+        <a href="#tai-lieu">Hướng dẫn</a>
+        <a href="#tai-lieu">Quy trình</a>
+        <a href="#tai-lieu">Văn bản</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Dược lâm sàng – BVĐK Thành phố Vinh</span>
+      <span>Website thử nghiệm – GitHub Pages</span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
