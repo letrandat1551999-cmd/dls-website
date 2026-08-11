@@ -19,3 +19,36 @@
 .aboutPortal h2{margin:7px 0 0;font-size:17px;line-height:1.35;color:#173e3c}
 .aboutPortal p{margin:0;font-size:12px;line-height:1.8;color:#647473}
 @media(max-width:760px){.aboutGrid,.aboutPortal{grid-template-columns:1fr}.aboutPortal{gap:12px}}
+
+/* v11 - cân chỉnh lại bố cục trang chủ */
+.homeHero{padding:54px 0 28px}
+.homeGrid{min-height:0;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);gap:56px;align-items:center}
+.heroCopy{padding:8px 0}
+.homeHero h1{font-size:clamp(42px,4.45vw,58px);line-height:1.03;letter-spacing:-2.1px;max-width:720px}
+.homeHero p{max-width:650px;line-height:1.65;margin-bottom:19px}
+.identityLine{margin-top:0}
+.welcomeCard{width:100%;box-sizing:border-box;padding:13px}
+.welcomeCard h2{font-size:23px;padding-bottom:10px}
+.welcomeCard>a{padding:13px 12px;min-height:48px}
+.homeActions{display:flex;justify-content:center;align-items:center;gap:12px;padding:28px 0 2px}
+.homeActions button{min-width:205px;min-height:46px;border-radius:10px;padding:13px 20px;font-size:11px;box-shadow:0 7px 18px rgba(7,117,107,.10);cursor:pointer}
+.homeActions .actionPrimary{display:inline-flex;align-items:center;justify-content:center;gap:20px}
+.homeActions .actionSecondary{display:inline-flex;align-items:center;justify-content:center;gap:20px;box-shadow:none}
+.homeActions button span{font-size:16px;line-height:1}
+.aboutSection{margin-top:0;padding:44px 0 0}
+.aboutGrid{grid-template-columns:1fr 1fr;gap:18px}
+.aboutCard{min-height:0;box-sizing:border-box;padding:24px 26px}
+.aboutCard p{line-height:1.75}
+.aboutPortal{grid-template-columns:1fr 1.2fr;min-height:126px;box-sizing:border-box;padding:23px 26px}
+.homeModules{padding-top:48px}
+@media(max-width:900px){
+  .homeGrid{grid-template-columns:1fr;gap:28px}
+  .welcomeCard{max-width:none}
+  .homeHero h1{max-width:760px}
+}
+@media(max-width:700px){
+  .homeHero{padding-top:36px}
+  .aboutGrid,.aboutPortal{grid-template-columns:1fr}
+  .homeActions{justify-content:stretch;flex-direction:column}
+  .homeActions button{width:100%}
+}
