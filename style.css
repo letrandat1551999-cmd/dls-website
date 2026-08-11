@@ -6,3 +6,16 @@
 .identityLine b{color:#08756b;letter-spacing:1px}
 .identityLine span{padding-left:9px;border-left:1px solid #cbd9d7}
 @media(max-width:620px){.identityLine{display:block}.identityLine span{display:block;border-left:0;padding-left:0;margin-top:3px}}
+
+/* v10 - giới thiệu Khoa Dược và Bộ phận Dược lâm sàng */
+.aboutSection{margin-top:34px}
+.sectionKicker{font-size:10px;font-weight:800;letter-spacing:1.7px;color:#08756b;margin-bottom:12px}
+.aboutGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.aboutCard{background:#fff;border:1px solid #dbe6e4;border-radius:16px;padding:22px 23px;box-shadow:0 7px 24px rgba(25,70,67,.05)}
+.aboutCard h2{margin:0 0 9px;font-size:15px;color:#163f3d}
+.aboutCard p{margin:0;font-size:12px;line-height:1.8;color:#647473}
+.aboutPortal{margin-top:14px;padding:21px 23px;border:1px solid #cfe1de;border-radius:16px;background:linear-gradient(135deg,#f4faf9,#fff);display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:center}
+.portalTag{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#08756b}
+.aboutPortal h2{margin:7px 0 0;font-size:17px;line-height:1.35;color:#173e3c}
+.aboutPortal p{margin:0;font-size:12px;line-height:1.8;color:#647473}
+@media(max-width:760px){.aboutGrid,.aboutPortal{grid-template-columns:1fr}.aboutPortal{gap:12px}}
