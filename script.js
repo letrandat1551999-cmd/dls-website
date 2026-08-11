@@ -1,25 +1,7 @@
-// Dán URL Web App Google Apps Script của bạn vào đây.
-// Ví dụ: https://script.google.com/macros/s/XXXXXXXX/exec
-const APPS_SCRIPT_URL = "";
-
-const menuBtn = document.querySelector(".menu-btn");
-const nav = document.querySelector(".nav");
-menuBtn?.addEventListener("click", () => nav.classList.toggle("open"));
-document.querySelectorAll(".nav a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
-
-function notice(message){
-  const t=document.getElementById("toast");
-  t.textContent=message;t.classList.add("show");
-  clearTimeout(window.__timer);
-  window.__timer=setTimeout(()=>t.classList.remove("show"),2600);
-}
-function openApp(){
-  if(!APPS_SCRIPT_URL){notice("Chưa cấu hình URL Apps Script trong script.js.");return;}
-  window.location.href=APPS_SCRIPT_URL;
-}
-function search(){
-  const v=document.getElementById("search").value.trim();
-  document.getElementById("search-result").textContent =
-    v ? `Từ khóa “${v}” đã được nhận. Module tra cứu sẽ được kết nối ở bước tiếp theo.` :
-        "Nhập từ khóa để bắt đầu tra cứu.";
-}
+const APPS_SCRIPT_URL="";
+function toggleMenu(){document.getElementById("nav").classList.toggle("open")}
+document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("nav").classList.remove("open")));
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(window._t);window._t=setTimeout(()=>t.classList.remove("show"),2400)}
+function coming(n){toast(n+" sẽ được kết nối ở bước tiếp theo.")}
+function openReport(){if(!APPS_SCRIPT_URL){toast("Chưa cấu hình URL Apps Script trong script.js.");return}location.href=APPS_SCRIPT_URL}
+function doSearch(){const v=document.getElementById("keyword").value.trim();document.getElementById("result").textContent=v?`Đã nhận từ khóa “${v}”. Module tra cứu sẽ được kết nối tiếp theo.`:"Nhập từ khóa để bắt đầu."}
