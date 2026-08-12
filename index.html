@@ -1,203 +1,330 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cổng thông tin DLS | Bệnh viện Đa khoa Thành phố Vinh</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cổng thông tin DLS | Bệnh viện Đa khoa Thành phố Vinh</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="topline"><div class="wrap topin"><span>BỆNH VIỆN ĐA KHOA THÀNH PHỐ VINH</span><span>KHOA DƯỢC · DƯỢC LÂM SÀNG</span></div></div>
-  <div class="wrap headerin">
-    <a class="brand" href="#home" onclick="showPage('home');return false;">
-      <img src="logo_vinh.png" alt="Logo Bệnh viện Đa khoa Thành phố Vinh">
-      <span><b>CỔNG THÔNG TIN DLS</b><small>Công cụ hỗ trợ Dược lâm sàng · Bệnh viện Đa khoa Thành phố Vinh</small></span>
-    </a>
-    <button class="menuBtn" onclick="toggleMenu()">☰</button>
-    <nav id="nav">
-      <a data-page="home" href="#home">Trang chủ</a>
-      <a data-page="tools" href="#tools">Công cụ</a>
-      <a data-page="search" href="#search">Tra cứu</a>
-      <a data-page="antibiotic" href="#antibiotic">Kháng sinh</a>
-      <div class="navDrop">
-        <button data-page="apps" onclick="showPage('apps')">Ứng dụng <span>⌄</span></button>
-        <div class="dropMenu">
-          <a href="#apps" onclick="showPage('apps');switchApp('report');return false;">Báo cáo thuốc ngoại trú</a>
-          <a href="#apps" onclick="showPage('apps');switchApp('renal');return false;">Hiệu chỉnh liều kháng sinh</a>
-          <a href="#apps" onclick="showPage('apps');switchApp('sglt2');return false;">Quản lý BN SGLT2</a>
+  <header class="siteHeader">
+    <div class="topline">
+      <div class="wrap topin">
+        <span>BỆNH VIỆN ĐA KHOA THÀNH PHỐ VINH</span>
+        <span>KHOA DƯỢC · DƯỢC LÂM SÀNG</span>
+      </div>
+    </div>
+    <div class="wrap headerin">
+      <a class="brand" href="#home" data-route="home">
+        <img src="logo_vinh.png" alt="Logo Bệnh viện Đa khoa Thành phố Vinh">
+        <span>
+          <b>CỔNG THÔNG TIN DLS</b>
+          <small>Công cụ hỗ trợ Dược lâm sàng · Bệnh viện Đa khoa Thành phố Vinh</small>
+        </span>
+      </a>
+      <button class="menuBtn" type="button" aria-label="Mở menu" onclick="toggleMenu()">☰</button>
+      <nav id="nav">
+        <a data-page="home" data-route="home" href="#home">Trang chủ</a>
+        <a data-page="tools" data-route="tools" href="#tools">Công cụ</a>
+        <a data-page="search" data-route="search" href="#search">Tra cứu</a>
+        <a data-page="antibiotic" data-route="antibiotic" href="#antibiotic">Kháng sinh</a>
+        <div class="navDrop">
+          <button data-page="apps" type="button" onclick="showPage('apps')">Ứng dụng <span>⌄</span></button>
+          <div class="dropMenu">
+            <a href="#apps" onclick="switchApp('report');return false;">Báo cáo thuốc ngoại trú</a>
+            <a href="#apps" onclick="switchApp('renal');return false;">Hiệu chỉnh liều kháng sinh</a>
+            <a href="#apps" onclick="switchApp('sglt2');return false;">Quản lý BN SGLT2</a>
+          </div>
+        </div>
+        <a data-page="docs" data-route="docs" href="#docs">Tài liệu</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="wrap heroInner">
+          <div class="heroCopy">
+            <span class="eyebrow">CỔNG THÔNG TIN DLS</span>
+            <h1>Dược lâm sàng trong một không gian thống nhất</h1>
+            <p>Tập trung công cụ tính toán, tra cứu, kháng sinh, ứng dụng nhúng và thư viện tài liệu để hỗ trợ sử dụng thuốc an toàn – hợp lý – hiệu quả.</p>
+            <div class="heroActions">
+              <button type="button" onclick="showPage('tools')">Tính CrCl / eGFR ngay</button>
+              <button class="secondary" type="button" onclick="showPage('antibiotic')">Mở kháng sinh</button>
+            </div>
+          </div>
+          <div class="heroImage">
+            <img src="benh-vien-dls.png" alt="Bệnh viện Đa khoa Thành phố Vinh">
+          </div>
         </div>
       </div>
-      <a data-page="docs" href="#docs">Tài liệu</a>
-    </nav>
-  </div>
-</header>
 
-<main>
-<section class="page active" id="page-home">
-  <div class="referenceHero">
-    <div class="heroPattern"></div>
-    <div class="wrap referenceHeroInner">
-      <div class="referenceHeroCopy">
-        <span class="heroEyebrow">CỔNG THÔNG TIN DLS</span>
-        <h1>CỔNG THÔNG TIN DLS</h1>
-        <h2>Công cụ hỗ trợ Dược lâm sàng</h2>
-        <p>Tập trung các công cụ, ứng dụng, chức năng tra cứu và tài liệu phục vụ hoạt động Dược lâm sàng, hướng tới sử dụng thuốc <b>an toàn – hợp lý – hiệu quả</b> trong bệnh viện.</p>
+      <div class="wrap introCards">
+        <article class="introCard">
+          <span class="cardIcon">🏥</span>
+          <h3>Khoa Dược</h3>
+          <p>Quản lý, cung ứng, bảo quản và phối hợp sử dụng thuốc trong bệnh viện theo định hướng an toàn, hợp lý và hiệu quả.</p>
+        </article>
+        <article class="introCard">
+          <span class="cardIcon">🩺</span>
+          <h3>Dược lâm sàng</h3>
+          <p>Hỗ trợ nhân viên y tế trong lựa chọn thuốc, hiệu chỉnh liều, theo dõi điều trị và cung cấp thông tin thuốc.</p>
+        </article>
+        <article class="introCard">
+          <span class="cardIcon">🎯</span>
+          <h3>Cổng thông tin DLS</h3>
+          <p>Chuẩn hóa các điểm truy cập chuyên môn để thao tác nhanh hơn, giảm rời rạc và dễ mở rộng về sau.</p>
+        </article>
       </div>
-      <div class="heroHospital" aria-hidden="true">
-        <img src="benh-vien-dls.png" alt="Bệnh viện" class="heroHospitalImage">
+
+      <div class="wrap quickSection">
+        <div class="sectionTitle">
+          <span></span><h2>Truy cập nhanh</h2><span></span>
+        </div>
+        <div class="quickGrid">
+          <button class="quickCard teal" type="button" onclick="showPage('tools')"><b>Công cụ</b><small>CrCl · eGFR · Albumin</small><span>Mở →</span></button>
+          <button class="quickCard blue" type="button" onclick="showPage('search')"><b>Tra cứu</b><small>Thuốc · Hoạt chất · ICD · Tương tác</small><span>Mở →</span></button>
+          <button class="quickCard purple" type="button" onclick="showPage('antibiotic')"><b>Kháng sinh</b><small>Lựa chọn KS · Kháng sinh đồ</small><span>Mở →</span></button>
+          <button class="quickCard orange" type="button" onclick="showPage('apps')"><b>Ứng dụng</b><small>Apps Script nhúng</small><span>Mở →</span></button>
+          <button class="quickCard cyan" type="button" onclick="showPage('docs')"><b>Tài liệu</b><small>Hướng dẫn · SOP · Văn bản</small><span>Mở →</span></button>
+        </div>
+      </div>
+
+      <div class="wrap principles">
+        <div><b>An toàn</b><small>Ưu tiên an toàn người bệnh.</small></div>
+        <div><b>Hợp lý</b><small>Dựa trên chỉ định và bằng chứng.</small></div>
+        <div><b>Hiệu quả</b><small>Tối ưu điều trị và chi phí.</small></div>
+        <div><b>Phối hợp</b><small>Đa chuyên ngành, cùng mục tiêu.</small></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-tools">
+      <div class="wrap pageInner">
+        <div class="moduleHero teal">
+          <div>
+            <span class="eyebrow">CÔNG CỤ CHUYÊN MÔN</span>
+            <h1>Tính toán realtime</h1>
+            <p>CrCl dùng Cockcroft–Gault với cân nặng thực đo. eGFR dùng CKD-EPI 2021 không hệ số chủng tộc.</p>
+          </div>
+          <div class="moduleBadge">01</div>
+        </div>
+
+        <div class="calculatorLayout">
+          <section class="calcPanel">
+            <div class="panelTitle">
+              <h2>Thông tin người bệnh</h2>
+              <small>Thay đổi dữ liệu, kết quả tự tính ngay.</small>
+            </div>
+            <div class="formGrid">
+              <label>Tuổi
+                <input id="age" type="number" min="1" max="120" placeholder="VD: 65">
+              </label>
+              <label>Giới
+                <select id="sex">
+                  <option value="male">Nam</option>
+                  <option value="female">Nữ</option>
+                </select>
+              </label>
+              <label>Cân nặng thực đo (kg)
+                <input id="weight" type="number" min="1" step="0.1" placeholder="VD: 58">
+              </label>
+              <label>Creatinin huyết thanh
+                <div class="inputPair">
+                  <input id="scr" type="number" min="0" step="0.01" placeholder="VD: 1.1">
+                  <select id="scrUnit">
+                    <option value="mgdl">mg/dL</option>
+                    <option value="umol">µmol/L</option>
+                  </select>
+                </div>
+              </label>
+              <label>Albumin hiện tại
+                <div class="inputPair">
+                  <input id="albuminCurrent" type="number" min="0" step="0.1" placeholder="VD: 25">
+                  <select id="albuminUnit">
+                    <option value="gl">g/L</option>
+                    <option value="gdl">g/dL</option>
+                  </select>
+                </div>
+              </label>
+              <label>Albumin mục tiêu
+                <input id="albuminTarget" type="number" min="0" step="0.1" placeholder="VD: 30">
+              </label>
+            </div>
+            <div class="formActions">
+              <button type="button" onclick="resetCalculators()">Xóa dữ liệu</button>
+              <button class="primary" type="button" onclick="sendRenalData()">Chuyển sang hiệu chỉnh liều KS</button>
+            </div>
+          </section>
+
+          <aside class="resultStack">
+            <article class="resultCard">
+              <span>CrCl</span>
+              <strong id="crclResult">—</strong>
+              <em id="crclStage">Chưa đủ dữ liệu</em>
+              <small>mL/phút · Cockcroft–Gault, cân nặng thực đo</small>
+            </article>
+            <article class="resultCard">
+              <span>eGFR</span>
+              <strong id="egfrResult">—</strong>
+              <em id="egfrStage">Chưa đủ dữ liệu</em>
+              <small>mL/phút/1,73 m² · CKD-EPI 2021</small>
+            </article>
+            <article class="resultCard">
+              <span>Albumin cần bù</span>
+              <strong id="albuminResult">—</strong>
+              <small>gram albumin ước tính = chênh lệch g/dL × cân nặng × 0,8</small>
+            </article>
+          </aside>
+        </div>
+
+        <div class="noteBox">
+          <b>Lưu ý lâm sàng</b>
+          <p id="renalAdvice">Nhập đủ tuổi, giới, cân nặng và creatinin để xem đánh giá chức năng thận.</p>
+          <p>Các công cụ chỉ hỗ trợ tính toán nhanh, không thay thế đánh giá lâm sàng, tình trạng dịch, dinh dưỡng, thai kỳ, lọc máu hoặc các yếu tố đặc biệt khác.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-search">
+      <div class="wrap pageInner">
+        <div class="moduleHero blue">
+          <div>
+            <span class="eyebrow">TRA CỨU CHUYÊN MÔN</span>
+            <h1>Thuốc, hoạt chất, ICD và tương tác</h1>
+            <p>Dữ liệu lấy trực tiếp từ Google Sheet nội bộ của Khoa Dược — chỉnh sửa trên Sheet sẽ tự cập nhật lên trang, không cần sửa code.</p>
+          </div>
+          <div class="moduleBadge">02</div>
+        </div>
+        <div class="searchBox">
+          <div class="searchControls">
+            <input id="keyword" placeholder="Nhập tên thuốc, hoạt chất, mã ICD, cặp tương tác...">
+            <select id="searchType">
+              <option value="all">Tất cả</option>
+              <option value="thuoc">Thuốc</option>
+              <option value="hoatchat">Hoạt chất</option>
+              <option value="icd">ICD-10</option>
+              <option value="tuongtac">Tương tác</option>
+            </select>
+            <button type="button" onclick="doSearch()">Tìm</button>
+          </div>
+          <div class="resultList" id="searchResults"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-antibiotic">
+      <div class="wrap pageInner">
+        <div class="moduleHero purple">
+          <div>
+            <span class="eyebrow">KHÁNG SINH</span>
+            <h1>Lựa chọn kháng sinh & kháng sinh đồ</h1>
+            <p>Gợi ý ban đầu theo bệnh cảnh và công cụ đọc kháng sinh đồ ở mức hỗ trợ, có nút chuyển nhanh sang hiệu chỉnh liều theo thận.</p>
+          </div>
+          <div class="moduleBadge">03</div>
+        </div>
+
+        <div class="twoCol">
+          <section class="workPanel">
+            <div class="panelTitle">
+              <h2>Lựa chọn kháng sinh</h2>
+              <small>Chọn bệnh cảnh thường gặp để xem hướng khởi đầu.</small>
+            </div>
+            <label>Bệnh cảnh
+              <select id="infectionSite" onchange="renderAntibioticGuide()">
+                <option value="cap">Viêm phổi cộng đồng</option>
+                <option value="uti">Nhiễm khuẩn tiết niệu</option>
+                <option value="skin">Nhiễm khuẩn da mô mềm</option>
+                <option value="intra">Nhiễm khuẩn ổ bụng</option>
+              </select>
+            </label>
+            <div id="antibioticGuide" class="guideBox"></div>
+          </section>
+
+          <section class="workPanel">
+            <div class="panelTitle">
+              <h2>Đọc nhanh kháng sinh đồ</h2>
+              <small>Nhập S/I/R để phân nhóm ưu tiên.</small>
+            </div>
+            <div class="susGrid" id="susGrid"></div>
+            <div class="guideBox" id="susSummary"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-apps">
+      <div class="wrap pageInner appPage">
+        <div class="moduleHero orange compact">
+          <div>
+            <span class="eyebrow">ỨNG DỤNG DƯỢC LÂM SÀNG</span>
+            <h1>Ứng dụng chuyên môn nhúng</h1>
+            <p>Chọn ứng dụng để sử dụng trực tiếp trong cổng thông tin.</p>
+          </div>
+          <div class="moduleBadge">04</div>
+        </div>
+        <div class="appTabs">
+          <button class="appTab active" data-app="report" type="button" onclick="switchApp('report')"><span>01</span><b>Báo cáo thuốc ngoại trú</b><small>Tổng hợp báo cáo</small></button>
+          <button class="appTab" data-app="renal" type="button" onclick="switchApp('renal')"><span>02</span><b>Hiệu chỉnh liều kháng sinh</b><small>Theo chức năng thận</small></button>
+          <button class="appTab" data-app="sglt2" type="button" onclick="switchApp('sglt2')"><span>03</span><b>Quản lý BN dùng SGLT2</b><small>Suy tim · suy thận</small></button>
+        </div>
+        <div class="appPanel active" id="panel-report">
+          <div class="panelHead"><div><b>Báo cáo thuốc ngoại trú</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('report')">Làm mới</button><button type="button" onclick="fullscreen('reportFrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbzk2LUh-SeJfpfMlENiiqDb0Q3DK2dyrD6z3xSxFM-XtlQcn2KiXQa1Ce1eX1kIpVIZfg/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="appFrameWrap" id="reportFrameWrap"><iframe id="reportFrame" title="Báo cáo thuốc ngoại trú" allow="fullscreen"></iframe></div>
+        </div>
+        <div class="appPanel" id="panel-renal">
+          <div class="panelHead"><div><b>Hiệu chỉnh liều kháng sinh theo chức năng thận</b><small id="renalDataHint">Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('renal')">Làm mới</button><button type="button" onclick="fullscreen('renalFrameWrap')">Toàn màn hình</button><a id="renalOpenLink" href="https://script.google.com/macros/s/AKfycbzmrMFkvj35fryuGdzFT4ByH4PjYi6S6Peovm2xbajFds2nmK9KHUcm3TYX8KAFPnhe/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="appFrameWrap" id="renalFrameWrap"><iframe id="renalFrame" title="Hiệu chỉnh liều kháng sinh theo chức năng thận" allow="fullscreen"></iframe></div>
+        </div>
+        <div class="appPanel" id="panel-sglt2">
+          <div class="panelHead"><div><b>Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('sglt2')">Làm mới</button><button type="button" onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="appFrameWrap" id="sglt2FrameWrap"><iframe id="sglt2Frame" title="Quản lý BN sử dụng SGLT2" allow="fullscreen"></iframe></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-docs">
+      <div class="wrap pageInner">
+        <div class="moduleHero cyan">
+          <div>
+            <span class="eyebrow">THƯ VIỆN CHUYÊN MÔN</span>
+            <h1>Tài liệu Dược lâm sàng</h1>
+            <p>Lọc nhanh nhóm hướng dẫn, quy trình, biểu mẫu và văn bản chuyên môn.</p>
+          </div>
+          <div class="moduleBadge">05</div>
+        </div>
+        <div class="docToolbar">
+          <input id="docKeyword" placeholder="Tìm tài liệu...">
+          <select id="docType">
+            <option value="all">Tất cả nhóm</option>
+            <option value="guide">Hướng dẫn</option>
+            <option value="sop">Quy trình</option>
+            <option value="form">Biểu mẫu</option>
+            <option value="policy">Văn bản</option>
+          </select>
+        </div>
+        <div class="docsGrid" id="docsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footerGrid">
+      <div>
+        <b>KHOA DƯỢC – BỆNH VIỆN ĐA KHOA THÀNH PHỐ VINH</b>
+        <p>Địa chỉ: Số 115, Lê Hồng Phong, Hưng Bình, Thành phố Vinh, Nghệ An</p>
+      </div>
+      <div>
+        <b>CỔNG THÔNG TIN DLS</b>
+        <p>Công cụ hỗ trợ Dược lâm sàng</p>
+      </div>
+      <div>
+        <b>Liên hệ</b>
+        <p>0238 3855 666 · khoaduoc@bvtp.vn</p>
       </div>
     </div>
-  </div>
-
-  <div class="wrap introCards">
-    <article class="introCard">
-      <div class="introIcon iconHospital" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><path d="M10 40V17h10v-7h8v7h10v23H10Z"/><path d="M24 13v12M18 19h12M16 31h4v9h-4zM28 31h4v9h-4z"/></svg>
-      </div>
-      <div><h3>GIỚI THIỆU KHOA DƯỢC</h3>
-      <p>Khoa Dược là đơn vị chuyên môn của Bệnh viện Đa khoa Thành phố Vinh, thực hiện các hoạt động chuyên môn về quản lý, cung ứng, bảo quản và sử dụng thuốc trong bệnh viện; phối hợp với các khoa, phòng nhằm góp phần bảo đảm thuốc được sử dụng an toàn, hợp lý và hiệu quả.</p></div>
-    </article>
-
-    <article class="introCard">
-      <div class="introIcon iconPeople" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="6"/><circle cx="11" cy="20" r="5"/><circle cx="37" cy="20" r="5"/><path d="M14 39c0-7 4-11 10-11s10 4 10 11M3 38c0-6 3-9 8-9 3 0 5 1 7 3M45 38c0-6-3-9-8-9-3 0-5 1-7 3"/></svg>
-      </div>
-      <div><h3>BỘ PHẬN DƯỢC LÂM SÀNG</h3>
-      <p>Bộ phận Dược lâm sàng hỗ trợ nhân viên y tế trong sử dụng thuốc, cung cấp thông tin thuốc, tư vấn lựa chọn và hiệu chỉnh thuốc, theo dõi các vấn đề liên quan đến thuốc và phối hợp tối ưu hóa điều trị cho người bệnh.</p></div>
-    </article>
-
-    <article class="introCard">
-      <div class="introIcon iconTarget" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="2.5"/><path d="m31 17 8-8M34 9h5v5"/></svg>
-      </div>
-      <div><h3>VỀ CỔNG THÔNG TIN DLS</h3>
-      <p>Cổng thông tin DLS được xây dựng nhằm tập trung các công cụ hỗ trợ chuyên môn, chức năng tra cứu, ứng dụng và tài liệu phục vụ hoạt động Dược lâm sàng, giúp việc khai thác thông tin trong thực hành thuận tiện và thống nhất hơn.</p></div>
-    </article>
-  </div>
-
-  <div class="wrap quickSection">
-    <div class="quickHeading"><span></span><h2>TRUY CẬP NHANH CÁC NHÓM CHỨC NĂNG</h2><span></span></div>
-    <div class="quickGrid">
-      <a class="quickCard teal" onclick="showPage('tools')">
-        <div class="quickIcon"><svg viewBox="0 0 48 48"><rect x="13" y="7" width="22" height="34" rx="3"/><path d="M18 13h12M18 21h5M27 21h3M18 28h5M27 28h3M18 35h12"/></svg></div>
-        <div class="quickText"><h3>CÔNG CỤ</h3><p>Các công cụ tính toán<br>hỗ trợ chuyên môn</p></div>
-        <span class="quickBtn">MỞ CÔNG CỤ <b>›</b></span>
-      </a>
-
-      <a class="quickCard blue" onclick="showPage('search')">
-        <div class="quickIcon"><svg viewBox="0 0 48 48"><circle cx="21" cy="21" r="11"/><path d="m29 29 10 10"/></svg></div>
-        <div class="quickText"><h3>TRA CỨU</h3><p>Tra cứu thuốc, hoạt chất,<br>ICD và thông tin liên quan</p></div>
-        <span class="quickBtn">TRA CỨU NGAY <b>›</b></span>
-      </a>
-
-      <a class="quickCard purple" onclick="showPage('antibiotic')">
-        <div class="quickIcon"><svg viewBox="0 0 48 48"><path d="M18 10h12v8H18zM18 30h12v8H18zM10 18h8v12h-8zM30 18h8v12h-8z"/><path d="m18 18 12 12M30 18 18 30"/></svg></div>
-        <div class="quickText"><h3>KHÁNG SINH</h3><p>Tra cứu, hiệu chỉnh liều<br>và hỗ trợ sử dụng KS</p></div>
-        <span class="quickBtn">MỞ KHÁNG SINH <b>›</b></span>
-      </a>
-
-      <a class="quickCard orange" onclick="showPage('apps')">
-        <div class="quickIcon"><svg viewBox="0 0 48 48"><path d="M24 8v16h16A16 16 0 1 1 24 8Z"/><path d="M28 8a16 16 0 0 1 12 12H28Z"/></svg></div>
-        <div class="quickText"><h3>ỨNG DỤNG</h3><p>Các ứng dụng phục vụ<br>hoạt động DLS</p></div>
-        <span class="quickBtn">MỞ ỨNG DỤNG <b>›</b></span>
-      </a>
-
-      <a class="quickCard cyan" onclick="showPage('docs')">
-        <div class="quickIcon"><svg viewBox="0 0 48 48"><path d="M12 6h18l8 8v28H12z"/><path d="M30 6v9h8M18 22h12M18 29h12M18 36h9"/></svg></div>
-        <div class="quickText"><h3>TÀI LIỆU</h3><p>Hướng dẫn, quy trình,<br>văn bản chuyên môn</p></div>
-        <span class="quickBtn">XEM TÀI LIỆU <b>›</b></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="wrap principles">
-    <div><div class="principleIcon"><svg viewBox="0 0 48 48"><path d="M24 5 39 10v11c0 10-6 17-15 22C15 38 9 31 9 21V10l15-5Z"/><path d="m16 24 5 5 11-12"/></svg></div><div><b>AN TOÀN</b><p>Đặt an toàn người bệnh<br>lên hàng đầu</p></div></div>
-    <div><div class="principleIcon"><svg viewBox="0 0 48 48"><path d="M13 8h22v32H13zM18 5h12v6H18z"/><path d="m19 25 4 4 7-8"/></svg></div><div><b>HỢP LÝ</b><p>Sử dụng thuốc phù hợp<br>chỉ định và bằng chứng</p></div></div>
-    <div><div class="principleIcon"><svg viewBox="0 0 48 48"><path d="M8 37h8V25h8V19h8v-7h8"/><path d="m31 12 9 0-1 9"/></svg></div><div><b>HIỆU QUẢ</b><p>Tối ưu hiệu quả điều trị<br>và chi phí</p></div></div>
-    <div><div class="principleIcon"><svg viewBox="0 0 48 48"><path d="M7 21c5-7 10-7 15-2l4 4 4-4c5-5 10-5 15 2M7 21l8 8 7-7m19-1-8 8-7-7"/></svg></div><div><b>PHỐI HỢP</b><p>Phối hợp đa chuyên ngành<br>vì người bệnh</p></div></div>
-  </div>
-</section>
-
-<section class="page" id="page-tools">
-  <div class="wrap pageInner">
-    <div class="moduleHero moduleHero-teal"><div><span class="eyebrow">CÔNG CỤ CHUYÊN MÔN</span><h1>Công cụ Dược lâm sàng</h1><p>Tập hợp các công cụ tính toán và hỗ trợ thực hành chuyên môn.</p></div><div class="moduleBadge">01</div></div>
-    <div class="toolGrid">
-      <a class="toolCard" onclick="coming('CrCl')"><span>01</span><b>CrCl</b><h3>Độ thanh thải creatinin</h3><p>Ước tính CrCl hỗ trợ đánh giá chức năng thận và sử dụng thuốc.</p><strong>Mở công cụ →</strong></a>
-      <a class="toolCard" onclick="coming('eGFR')"><span>02</span><b>eGFR</b><h3>Ước tính eGFR</h3><p>Tính toán eGFR từ các thông số lâm sàng cần thiết.</p><strong>Mở công cụ →</strong></a>
-      <a class="toolCard" onclick="coming('Albumin')"><span>03</span><b>ALB</b><h3>Albumin cần bù</h3><p>Tính nhanh lượng albumin cần bù theo thông số người bệnh.</p><strong>Mở công cụ →</strong></a>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-search">
-  <div class="wrap pageInner">
-    <div class="moduleHero moduleHero-blue"><div><span class="eyebrow">TRA CỨU CHUYÊN MÔN</span><h1>Tra cứu Dược lâm sàng</h1><p>Tra cứu thuốc, hoạt chất, ICD và các thông tin phục vụ thực hành.</p></div><div class="moduleBadge">02</div></div>
-    <div class="searchLayout">
-      <div class="searchBox">
-        <label>TÌM KIẾM</label>
-        <div class="searchRow"><input id="keyword" placeholder="Nhập tên thuốc, hoạt chất, ICD..."><button onclick="doSearch()">Tìm kiếm</button></div>
-        <small id="result">Nhập từ khóa để bắt đầu.</small>
-      </div>
-      <div class="searchTopics"><div><b>Thuốc & hoạt chất</b><small>Thông tin thuốc và hoạt chất</small></div><div><b>ICD</b><small>Tra cứu mã và bệnh lý</small></div><div><b>Tương tác</b><small>Hỗ trợ kiểm tra tương tác</small></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-antibiotic">
-  <div class="wrap pageInner">
-    <div class="moduleHero moduleHero-purple"><div><span class="eyebrow">KHÁNG SINH</span><h1>Hỗ trợ sử dụng kháng sinh</h1><p>Các chức năng hỗ trợ lựa chọn, tra cứu và sử dụng kháng sinh an toàn, hợp lý.</p></div><div class="moduleBadge">03</div></div>
-    <div class="antibioticGrid">
-      <div class="infoPanel"><span>01</span><h3>Lựa chọn kháng sinh</h3><p>Hỗ trợ tra cứu và định hướng lựa chọn theo bệnh cảnh, vi khuẩn và các nguồn bằng chứng.</p><button onclick="coming('Lựa chọn kháng sinh')">Mở chức năng</button></div>
-      <div class="infoPanel"><span>02</span><h3>Hiệu chỉnh liều theo thận</h3><p>Truy cập ứng dụng chuyên dụng để hiệu chỉnh liều kháng sinh theo chức năng thận.</p><button onclick="showPage('apps');switchApp('renal')">Mở ứng dụng</button></div>
-      <div class="infoPanel"><span>03</span><h3>Kháng sinh đồ</h3><p>Không gian dành cho các chức năng hỗ trợ khai thác kháng sinh đồ.</p><button onclick="coming('Kháng sinh đồ')">Mở chức năng</button></div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-apps">
-  <div class="wrap pageInner appPage">
-    <div class="moduleHero moduleHero-orange compact"><div><span class="eyebrow">ỨNG DỤNG DƯỢC LÂM SÀNG</span><h1>Ứng dụng chuyên môn</h1><p>Chọn một ứng dụng để sử dụng trực tiếp trong Cổng thông tin DLS.</p></div><div class="moduleBadge">04</div></div>
-    <div class="appTabs">
-      <button class="appTab active" data-app="report" onclick="switchApp('report')"><span>01</span><b>Báo cáo thuốc ngoại trú</b><small>Tổng hợp báo cáo</small></button>
-      <button class="appTab" data-app="renal" onclick="switchApp('renal')"><span>02</span><b>Hiệu chỉnh liều kháng sinh</b><small>Theo chức năng thận</small></button>
-      <button class="appTab" data-app="sglt2" onclick="switchApp('sglt2')"><span>03</span><b>Quản lý BN sử dụng SGLT2</b><small>Suy tim · suy thận</small></button>
-    </div>
-    <div class="appPanel active" id="panel-report">
-      <div class="panelHead"><div><b>Báo cáo thuốc ngoại trú</b><small>Google Apps Script</small></div><div class="reportActions"><button onclick="reloadApp('report')">Làm mới</button><button onclick="fullscreen('reportFrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbzk2LUh-SeJfpfMlENiiqDb0Q3DK2dyrD6z3xSxFM-XtlQcn2KiXQa1Ce1eX1kIpVIZfg/exec" target="_blank">Mở riêng</a></div></div>
-      <div class="appFrameWrap" id="reportFrameWrap"><iframe id="reportFrame" title="Báo cáo thuốc ngoại trú" allow="fullscreen"></iframe></div>
-    </div>
-    <div class="appPanel" id="panel-renal">
-      <div class="panelHead"><div><b>Hiệu chỉnh liều kháng sinh theo chức năng thận</b><small>Google Apps Script</small></div><div class="reportActions"><button onclick="reloadApp('renal')">Làm mới</button><button onclick="fullscreen('renalFrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbzmrMFkvj35fryuGdzFT4ByH4PjYi6S6Peovm2xbajFds2nmK9KHUcm3TYX8KAFPnhe/exec" target="_blank">Mở riêng</a></div></div>
-      <div class="appFrameWrap" id="renalFrameWrap"><iframe id="renalFrame" title="Hiệu chỉnh liều kháng sinh theo chức năng thận" allow="fullscreen"></iframe></div>
-    </div>
-    <div class="appPanel" id="panel-sglt2">
-      <div class="panelHead"><div><b>Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button onclick="reloadApp('sglt2')">Làm mới</button><button onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec" target="_blank">Mở riêng</a></div></div>
-      <div class="appFrameWrap" id="sglt2FrameWrap"><iframe id="sglt2Frame" title="Quản lý BN sử dụng SGLT2" allow="fullscreen"></iframe></div>
-    </div>
-  </div>
-</section>
-
-<section class="page" id="page-docs">
-  <div class="wrap pageInner">
-    <div class="moduleHero moduleHero-cyan"><div><span class="eyebrow">THƯ VIỆN CHUYÊN MÔN</span><h1>Tài liệu Dược lâm sàng</h1><p>Quy trình, hướng dẫn, văn bản và tài liệu phục vụ công tác Dược lâm sàng.</p></div><div class="moduleBadge">05</div></div>
-    <div class="docsGrid"><a onclick="coming('Hướng dẫn')"><span>01</span><h3>Hướng dẫn sử dụng thuốc</h3><p>Kho tài liệu chuyên môn phục vụ thực hành.</p></a><a onclick="coming('Quy trình')"><span>02</span><h3>Quy trình Dược lâm sàng</h3><p>SOP, quy trình và biểu mẫu hoạt động.</p></a><a onclick="coming('Văn bản')"><span>03</span><h3>Văn bản & quy định</h3><p>Hệ thống hóa các văn bản liên quan đến công tác Dược.</p></a></div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="wrap footerReference">
-    <div class="footerMain">
-      <b>KHOA DƯỢC – BỆNH VIỆN ĐA KHOA THÀNH PHỐ VINH</b>
-      <p><span>⌖</span> Số 115, Lê Hồng Phong, Hưng Bình, Thành phố Vinh, Nghệ An</p>
-      <p><span>☎</span> 0238 3855 666 &nbsp;&nbsp; <span>✉</span> khoaduoc@bvtp.vn</p>
-    </div>
-    <div class="footerBrand"><b>CỔNG THÔNG TIN DLS</b><p>Công cụ hỗ trợ Dược lâm sàng</p></div>
-    <div class="footerCopyright"><p>© 2025 Bệnh viện Đa khoa Thành phố Vinh</p><p>Tất cả quyền được bảo lưu.</p></div>
-  </div>
-</footer>
-<div id="toast"></div>
-<script src="script.js"></script>
+  </footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
 </body>
 </html>
