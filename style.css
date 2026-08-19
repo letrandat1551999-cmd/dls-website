@@ -98,6 +98,9 @@ button{cursor:pointer}
 .heroImage img{width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:saturate(.95) contrast(.98)}
 
 .introCards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:-30px;position:relative;z-index:3}
+/* Khi có banner "Bài viết nổi bật" chen giữa Hero và 3 thẻ này, KHÔNG kéo 3 thẻ đè lên banner nữa
+   (margin âm ở trên chỉ đúng khi 3 thẻ nằm ngay sau Hero) — trả về khoảng cách bình thường. */
+#featuredPostsWrap.show + .introCards{margin-top:28px}
 .introCard,.quickCard,.calcPanel,.resultCard,.searchBox,.workPanel,.noteBox,.docsGrid article{
   background:var(--surface);
   border:1px solid var(--line);
@@ -304,6 +307,8 @@ footer{background:var(--green-dark);color:#fff}
   box-shadow:var(--shadow);
   background:var(--surface);
 }
+#featuredPostsWrap{display:none}
+#featuredPostsWrap.show{display:block}
 .featuredTrack{display:flex;transition:transform .5s ease}
 .featuredSlide{
   flex:0 0 100%;

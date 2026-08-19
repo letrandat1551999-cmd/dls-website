@@ -385,9 +385,9 @@ function renderFeaturedPosts(){
 
   const featured=postsIndex.filter(p=>p.NOI_BAT==="Có"||p.NOI_BAT===true||p.NOI_BAT==="TRUE");
   clearInterval(featuredTimer);
-  if(!featured.length){ wrap.style.display="none"; carousel.innerHTML=""; return; }
+  if(!featured.length){ wrap.classList.remove("show"); carousel.innerHTML=""; return; }
 
-  wrap.style.display="block";
+  wrap.classList.add("show");
   featuredIndex=0;
   carousel.dataset.count=featured.length;
   carousel.innerHTML=`
