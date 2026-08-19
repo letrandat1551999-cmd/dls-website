@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Cổng thông tin DLS | Bệnh viện Đa khoa Thành phố Vinh</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="logo_vinh.png">
 </head>
 <body>
   <header class="siteHeader">
@@ -23,6 +22,7 @@
           <small>Công cụ hỗ trợ Dược lâm sàng · Bệnh viện Đa khoa Thành phố Vinh</small>
         </span>
       </a>
+      <button class="searchToggleBtn" type="button" aria-label="Tìm kiếm" onclick="toggleGlobalSearch()">🔍</button>
       <button class="menuBtn" type="button" aria-label="Mở menu" onclick="toggleMenu()">☰</button>
       <nav id="nav">
         <a data-page="home" data-route="home" href="#home">Trang chủ</a>
@@ -32,24 +32,42 @@
         <div class="navDrop">
           <button data-page="apps" type="button" onclick="showPage('apps')">Ứng dụng <span>⌄</span></button>
           <div class="dropMenu">
-            <a href="#apps" onclick="switchApp('report');return false;">Báo cáo thuốc ngoại trú</a>
+            <a href="#apps" onclick="switchApp('report');return false;">🔒 Báo cáo thuốc ngoại trú</a>
             <a href="#apps" onclick="switchApp('renal');return false;">Hiệu chỉnh liều kháng sinh</a>
-            <a href="#apps" onclick="switchApp('sglt2');return false;">Quản lý BN SGLT2</a>
+            <a href="#apps" onclick="switchApp('sglt2');return false;">🔒 Quản lý BN SGLT2</a>
           </div>
         </div>
-        <a data-page="docs" data-route="docs" href="#docs">Tài liệu</a>
+        <div class="navDrop">
+          <button data-page="docs" type="button" onclick="showPage('docs')">Tài liệu <span>⌄</span></button>
+          <div class="dropMenu">
+            <a data-page="docs" data-route="docs" href="#docs">Tài liệu</a>
+            <a data-page="adr" data-route="adr" href="#adr">ADR</a>
+            <a data-page="phacdo" data-route="phacdo" href="#phacdo">Phác đồ BYT</a>
+            <a data-page="qlcl" data-route="qlcl" href="#qlcl">QLCL Dược</a>
+          </div>
+        </div>
+        <a data-page="admin" data-route="admin" href="#admin" style="opacity:.85">🔒 Quản trị</a>
       </nav>
+    </div>
+    <div class="globalSearchPanel" id="globalSearchPanel">
+      <div class="wrap">
+        <div class="globalSearchBar">
+          <input type="text" id="globalSearchInput" placeholder="Tìm thuốc, ICD, tương tác, kháng sinh, phác đồ, tiêu chí QLCL, bài viết..." autocomplete="off" oninput="onGlobalSearchInput(this.value)">
+          <button type="button" onclick="closeGlobalSearch()" aria-label="Đóng tìm kiếm">✕</button>
+        </div>
+        <div class="globalSearchResults" id="globalSearchResults"></div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="page active" id="page-home">
-      <div class="hero">
+      <div class="hero reveal">
         <div class="wrap heroInner">
           <div class="heroCopy">
             <span class="eyebrow">CỔNG THÔNG TIN DLS</span>
-            <h1>Cổng thông tin Dược lâm sàng và công cụ hỗ trợ Dược sĩ</h1>
-            <p>Tập trung công cụ tính toán, tra cứu, kháng sinh, ứng dụng nhúng và thư viện tài liệu để hỗ trợ sử dụng thuốc an toàn – hợp lý – hiệu quả.</p>
+            <h1>Bộ phận Dược lâm sàng – Bệnh viện Đa khoa Thành phố Vinh</h1>
+            <p>Trang tổng hợp công cụ tính toán, tra cứu, kháng sinh, ứng dụng hỗ trợ và thư viện tài liệu sử dụng thuốc an toàn – hợp lý – hiệu quả.</p>
             <div class="heroActions">
               <button type="button" onclick="showPage('tools')">Tính CrCl / eGFR ngay</button>
               <button class="secondary" type="button" onclick="showPage('antibiotic')">Mở kháng sinh</button>
@@ -61,7 +79,11 @@
         </div>
       </div>
 
-      <div class="wrap introCards">
+      <div class="wrap reveal" id="featuredPostsWrap" style="display:none;margin-top:28px">
+        <div class="featuredCarousel banner" id="featuredCarousel"></div>
+      </div>
+
+      <div class="wrap introCards reveal">
         <article class="introCard">
           <span class="cardIcon">🏥</span>
           <h3>Khoa Dược</h3>
@@ -75,11 +97,11 @@
         <article class="introCard">
           <span class="cardIcon">🎯</span>
           <h3>Cổng thông tin DLS</h3>
-          <p>Chuẩn hóa các điểm truy cập chuyên môn để thao tác nhanh hơn, giảm rời rạc và dễ mở rộng về sau.</p>
+          <p>Tổng hợp thông tin DLS, đảm bảo thông tin cung cấp đầy đủ, kịp thời, chính xác.</p>
         </article>
       </div>
 
-      <div class="wrap quickSection">
+      <div class="wrap quickSection reveal">
         <div class="sectionTitle">
           <span></span><h2>Truy cập nhanh</h2><span></span>
         </div>
@@ -92,7 +114,17 @@
         </div>
       </div>
 
-      <div class="wrap principles">
+      <div class="wrap reveal" id="homeNewsWrap" style="display:none">
+        <div class="sectionTitle">
+          <span></span><h2>Tin tức Cảnh giác dược mới</h2><span></span>
+        </div>
+        <div class="twoCol" id="homeNewsBox"></div>
+        <div class="formActions" style="justify-content:center;margin-top:10px">
+          <button type="button" onclick="goToAdrNews()">Xem tất cả tin tức →</button>
+        </div>
+      </div>
+
+      <div class="wrap principles reveal">
         <div><b>An toàn</b><small>Ưu tiên an toàn người bệnh.</small></div>
         <div><b>Hợp lý</b><small>Dựa trên chỉ định và bằng chứng.</small></div>
         <div><b>Hiệu quả</b><small>Tối ưu điều trị và chi phí.</small></div>
@@ -102,11 +134,11 @@
 
     <section class="page" id="page-tools">
       <div class="wrap pageInner">
-        <div class="moduleHero teal">
+        <div class="reveal moduleHero teal">
           <div>
             <span class="eyebrow">CÔNG CỤ CHUYÊN MÔN</span>
             <h1>Tính toán realtime</h1>
-            <p>CrCl dùng Cockcroft–Gault với cân nặng thực đo. eGFR dùng CKD-EPI 2021 không hệ số chủng tộc.</p>
+            <p>CrCl dùng Cockcroft–Gault với cân nặng thực đo. eGFR dùng CKD-EPI 2021.</p>
           </div>
           <div class="moduleBadge">01</div>
         </div>
@@ -115,7 +147,7 @@
           <section class="calcPanel">
             <div class="panelTitle">
               <h2>Thông tin người bệnh</h2>
-              <small>Thay đổi dữ liệu, kết quả tự tính ngay.</small>
+              <small>nhập đầy đủ các thông tin cần thiết trong trường dưới đây.</small>
             </div>
             <div class="formGrid">
               <label>Tuổi
@@ -189,11 +221,11 @@
 
     <section class="page" id="page-search">
       <div class="wrap pageInner">
-        <div class="moduleHero blue">
+        <div class="reveal moduleHero blue">
           <div>
             <span class="eyebrow">TRA CỨU CHUYÊN MÔN</span>
             <h1>Thuốc, hoạt chất, ICD và tương tác</h1>
-            <p>Dữ liệu lấy trực tiếp từ Google Sheet nội bộ của Khoa Dược — chỉnh sửa trên Sheet sẽ tự cập nhật lên trang, không cần sửa code.</p>
+            <p>Dữ liệu cập nhật mới nhất, bao gồm thuốc đang sử dụng, ICD, hoạt chất, các tương tác thuốc.</p>
           </div>
           <div class="moduleBadge">02</div>
         </div>
@@ -216,11 +248,11 @@
 
     <section class="page" id="page-antibiotic">
       <div class="wrap pageInner">
-        <div class="moduleHero purple">
+        <div class="reveal moduleHero purple">
           <div>
             <span class="eyebrow">KHÁNG SINH</span>
             <h1>Lựa chọn kháng sinh & kháng sinh đồ</h1>
-            <p>Gợi ý ban đầu theo bệnh cảnh và công cụ đọc kháng sinh đồ ở mức hỗ trợ, có nút chuyển nhanh sang hiệu chỉnh liều theo thận.</p>
+            <p>Vị trí nhiễm khuẩn → Vi khuẩn thường gặp → Kháng sinh phù hợp</p>
           </div>
           <div class="moduleBadge">03</div>
         </div>
@@ -228,57 +260,136 @@
         <div class="twoCol">
           <section class="workPanel">
             <div class="panelTitle">
-              <h2>Lựa chọn kháng sinh</h2>
-              <small>Chọn bệnh cảnh thường gặp để xem hướng khởi đầu.</small>
+              <h2>Đề xuất theo vị trí nhiễm khuẩn</h2>
+              <small>Hệ cơ quan → Vi khuẩn thường gặp → Kháng sinh phù hợp → đối chiếu liều.</small>
             </div>
-            <label>Bệnh cảnh
-              <select id="infectionSite" onchange="renderAntibioticGuide()">
-                <option value="cap">Viêm phổi cộng đồng</option>
-                <option value="uti">Nhiễm khuẩn tiết niệu</option>
-                <option value="skin">Nhiễm khuẩn da mô mềm</option>
-                <option value="intra">Nhiễm khuẩn ổ bụng</option>
-              </select>
+            <label>Bước 1: Chọn hệ cơ quan nhiễm khuẩn
+              <select id="infectionSite" onchange="renderAntibioticGuide()"></select>
             </label>
-            <div id="antibioticGuide" class="guideBox"></div>
+            <div id="antibioticGuide" class="guideBox">Đang tải dữ liệu…</div>
           </section>
 
           <section class="workPanel">
             <div class="panelTitle">
-              <h2>Đọc nhanh kháng sinh đồ</h2>
-              <small>Nhập S/I/R để phân nhóm ưu tiên.</small>
+              <h2>Tra theo vi khuẩn đã định danh</h2>
+              <small>Đã biết tên vi khuẩn từ kết quả cấy? Gõ vào đây để xem kháng sinh phù hợp trực tiếp.</small>
             </div>
-            <div class="susGrid" id="susGrid"></div>
-            <div class="guideBox" id="susSummary"></div>
+            <div class="searchControls" style="grid-template-columns:1fr 92px;position:relative">
+              <input id="organismKeyword" placeholder="Vd: Klebsiella pneumoniae..." autocomplete="off">
+              <button type="button" onclick="searchByOrganism()">Tra</button>
+              <div class="orgSuggest" id="organismSuggestions"></div>
+            </div>
+            <div class="resultList" id="organismResults"></div>
           </section>
         </div>
+
+        <div class="workPanel" style="margin-top:16px">
+          <div class="panelTitle">
+            <h2>Phân tích nhanh kết quả kháng sinh đồ</h2>
+            <small>Dán nguyên đoạn text từ phần mềm xét nghiệm — xử lý ngay trên trình duyệt, <b>không lưu lại</b> ở bất kỳ đâu.</small>
+          </div>
+          <textarea id="ksdoText" rows="8" placeholder="Dán nguyên đoạn kết quả kháng sinh đồ vào đây (bao gồm dòng 'Vi khuẩn định danh: ...' và bảng Nhóm ưu tiên / Tên kháng sinh / Kết quả / Phiên giải)..." style="width:100%;min-height:170px;border:1px solid #cfe2df;border-radius:10px;padding:12px 14px;background:var(--surface-2);color:var(--text);font:inherit;font-family:Consolas,'Courier New',monospace;font-size:12px;resize:vertical"></textarea>
+          <div class="formActions">
+            <button class="primary" type="button" onclick="analyzeAntibiogram()">Phân tích</button>
+            <button type="button" onclick="$('ksdoText').value='';$('ksdoAnalysis').innerHTML=''">Xoá</button>
+          </div>
+          <div id="ksdoAnalysis" style="margin-top:12px"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-adr">
+      <div class="wrap pageInner">
+        <div class="reveal moduleHero orange">
+          <div>
+            <span class="eyebrow">ADR</span>
+            <h1>Theo dõi phản ứng có hại của thuốc</h1>
+            <p>Link báo cáo nhanh + tin tức cập nhật tự động từ Trung tâm DI &amp; ADR Quốc gia.</p>
+          </div>
+          <div class="moduleBadge">⚠</div>
+        </div>
+
+        <div class="appTabs" id="adrTabs">
+          <button class="appTab active" type="button" data-adr-tab="content" onclick="adrSelectTab('content')"><span>01</span><b>Hướng dẫn &amp; Báo cáo ADR</b></button>
+          <button class="appTab" type="button" data-adr-tab="news" onclick="adrSelectTab('news')"><span>02</span><b>Tin tức mới</b></button>
+        </div>
+        <div class="guideBox" id="adrContent" style="padding:22px">Đang tải dữ liệu…</div>
+        <div class="guideBox" id="adrNewsContent" style="padding:22px;display:none">
+          <div id="externalNewsBox">Đang tải tin tức…</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-phacdo">
+      <div class="wrap pageInner">
+        <div class="reveal moduleHero blue">
+          <div>
+            <span class="eyebrow">PHÁC ĐỒ</span>
+            <h1>Phác đồ điều trị Bộ Y tế ban hành</h1>
+            <p>Danh sách phác đồ chuyên môn theo quyết định của Bộ Y tế, kèm link văn bản gốc.</p>
+          </div>
+          <div class="moduleBadge">⚕</div>
+        </div>
+        <div class="searchBox">
+          <div class="searchControls" style="grid-template-columns:1fr 92px">
+            <input id="phacDoKeyword" placeholder="Nhập tên bệnh/phác đồ cần tìm..." oninput="doSearchPhacDo()">
+            <button type="button" onclick="doSearchPhacDo()">Tìm</button>
+          </div>
+          <div class="resultList" id="phacDoResults"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-qlcl">
+      <div class="wrap pageInner">
+        <div class="reveal moduleHero purple">
+          <div>
+            <span class="eyebrow">QLCL DƯỢC</span>
+            <h1>Bộ tiêu chí chất lượng Dược bệnh viện</h1>
+            <p>Tiêu chí C9.1–C9.6, theo từng Mức 1–5, kèm minh chứng — tra riêng theo từng cơ sở.</p>
+          </div>
+          <div class="moduleBadge">✓</div>
+        </div>
+
+        <div class="appTabs" id="qlclTabs">
+          <button class="appTab active" type="button" data-qlcl-tab="cs1" onclick="qlclSelectTab('cs1')"><span>01</span><b>Cơ sở 1</b></button>
+          <button class="appTab" type="button" data-qlcl-tab="cs2" onclick="qlclSelectTab('cs2')"><span>02</span><b>Cơ sở 2</b></button>
+        </div>
+
+        <div class="searchControls" style="grid-template-columns:1fr;margin:14px 0">
+          <input id="qlclKeyword" placeholder="Tìm theo nội dung minh chứng..." oninput="doSearchQlcl()">
+        </div>
+
+        <div class="guideBox" id="qlclCs1Box" style="padding:22px">Đang tải dữ liệu…</div>
+        <div class="guideBox" id="qlclCs2Box" style="padding:22px;display:none">Đang tải dữ liệu…</div>
       </div>
     </section>
 
     <section class="page" id="page-apps">
       <div class="wrap pageInner appPage">
-        <div class="moduleHero orange compact">
+        <div class="reveal moduleHero orange compact">
           <div>
             <span class="eyebrow">ỨNG DỤNG DƯỢC LÂM SÀNG</span>
-            <h1>Ứng dụng chuyên môn nhúng</h1>
+            <h1>Ứng dụng chuyên môn phục vụ báo cáo và hoạt động DLS</h1>
             <p>Chọn ứng dụng để sử dụng trực tiếp trong cổng thông tin.</p>
           </div>
           <div class="moduleBadge">04</div>
         </div>
         <div class="appTabs">
-          <button class="appTab active" data-app="report" type="button" onclick="switchApp('report')"><span>01</span><b>Báo cáo thuốc ngoại trú</b><small>Tổng hợp báo cáo</small></button>
-          <button class="appTab" data-app="renal" type="button" onclick="switchApp('renal')"><span>02</span><b>Hiệu chỉnh liều kháng sinh</b><small>Theo chức năng thận</small></button>
-          <button class="appTab" data-app="sglt2" type="button" onclick="switchApp('sglt2')"><span>03</span><b>Quản lý BN dùng SGLT2</b><small>Suy tim · suy thận</small></button>
+          <button class="appTab" data-app="report" type="button" onclick="switchApp('report')"><span>01</span><b>🔒 Báo cáo thuốc ngoại trú</b><small>Tổng hợp báo cáo</small></button>
+          <button class="appTab active" data-app="renal" type="button" onclick="switchApp('renal')"><span>02</span><b>Hiệu chỉnh liều kháng sinh</b><small>Theo chức năng thận</small></button>
+          <button class="appTab" data-app="sglt2" type="button" onclick="switchApp('sglt2')"><span>03</span><b>🔒 Quản lý BN dùng SGLT2</b><small>Suy tim · suy thận</small></button>
         </div>
-        <div class="appPanel active" id="panel-report">
+        <div class="appPanel" id="panel-report">
           <div class="panelHead"><div><b>Báo cáo thuốc ngoại trú</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('report')">Làm mới</button><button type="button" onclick="fullscreen('reportFrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbzk2LUh-SeJfpfMlENiiqDb0Q3DK2dyrD6z3xSxFM-XtlQcn2KiXQa1Ce1eX1kIpVIZfg/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="reportFrameWrap"><iframe id="reportFrame" title="Báo cáo thuốc ngoại trú" allow="fullscreen"></iframe></div>
         </div>
-        <div class="appPanel" id="panel-renal">
+        <div class="appPanel active" id="panel-renal">
           <div class="panelHead"><div><b>Hiệu chỉnh liều kháng sinh theo chức năng thận</b><small id="renalDataHint">Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('renal')">Làm mới</button><button type="button" onclick="fullscreen('renalFrameWrap')">Toàn màn hình</button><a id="renalOpenLink" href="https://script.google.com/macros/s/AKfycbzmrMFkvj35fryuGdzFT4ByH4PjYi6S6Peovm2xbajFds2nmK9KHUcm3TYX8KAFPnhe/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="renalFrameWrap"><iframe id="renalFrame" title="Hiệu chỉnh liều kháng sinh theo chức năng thận" allow="fullscreen"></iframe></div>
         </div>
         <div class="appPanel" id="panel-sglt2">
-          <div class="panelHead"><div><b>Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('sglt2')">Làm mới</button><button type="button" onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="panelHead"><div><b>🔒 Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('sglt2')">Làm mới</button><button type="button" onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="sglt2FrameWrap"><iframe id="sglt2Frame" title="Quản lý BN sử dụng SGLT2" allow="fullscreen"></iframe></div>
         </div>
       </div>
@@ -286,7 +397,7 @@
 
     <section class="page" id="page-docs">
       <div class="wrap pageInner">
-        <div class="moduleHero cyan">
+        <div class="reveal moduleHero cyan">
           <div>
             <span class="eyebrow">THƯ VIỆN CHUYÊN MÔN</span>
             <h1>Tài liệu Dược lâm sàng</h1>
@@ -294,17 +405,82 @@
           </div>
           <div class="moduleBadge">05</div>
         </div>
-        <div class="docToolbar">
-          <input id="docKeyword" placeholder="Tìm tài liệu...">
-          <select id="docType">
-            <option value="all">Tất cả nhóm</option>
-            <option value="guide">Hướng dẫn</option>
-            <option value="sop">Quy trình</option>
-            <option value="form">Biểu mẫu</option>
-            <option value="policy">Văn bản</option>
-          </select>
+        <div id="postsFeedView">
+          <div class="appTabs" id="staticDocsTabs"></div>
+          <div class="guideBox" id="staticDocsContent" style="padding:20px">Đang tải dữ liệu…</div>
+
+          <div class="sectionTitle" style="margin-top:30px"><span></span><h2>Bài viết mới</h2><span></span></div>
+          <div class="docToolbar" style="grid-template-columns:1fr 100px">
+            <input id="postKeyword" placeholder="Tìm bài viết...">
+            <button type="button" onclick="doSearchPosts()">Tìm</button>
+          </div>
+          <div class="docsGrid" id="postsGrid"></div>
+          <div class="formActions" style="justify-content:center;margin-top:16px">
+            <button id="loadMorePostsBtn" type="button" style="display:none" onclick="loadMorePosts()">Xem thêm bài cũ hơn</button>
+          </div>
         </div>
-        <div class="docsGrid" id="docsGrid"></div>
+
+        <div id="postDetailView" class="guideBox" style="display:none;padding:22px"></div>
+      </div>
+    </section>
+    <section class="page" id="page-admin">
+      <div class="wrap pageInner">
+        <div class="reveal moduleHero purple">
+          <div>
+            <span class="eyebrow">NỘI BỘ KHOA DƯỢC</span>
+            <h1>Quản trị dữ liệu tra cứu</h1>
+            <p>Đăng nhập để thêm, sửa, xoá dữ liệu Thuốc / Hoạt chất / ICD-10 / Tương tác — thay đổi sẽ có hiệu lực trên trang Tra cứu ngay khi tải lại trang.</p>
+          </div>
+          <div class="moduleBadge">🔒</div>
+        </div>
+
+        <div id="adminLoginCard" class="searchBox" style="max-width:420px">
+          <label>Mật khẩu quản trị
+            <input id="adminPassword" type="password" placeholder="Nhập mật khẩu được cấp">
+          </label>
+          <div class="formActions">
+            <button class="primary" type="button" onclick="adminLogin()">Đăng nhập</button>
+          </div>
+          <p id="adminLoginMsg" style="color:#b42318;font-size:12px;margin-top:6px"></p>
+        </div>
+
+        <div id="adminWorkspace" style="display:none">
+          <div class="panelHead" style="margin-bottom:14px">
+            <div><b id="adminGreeting"></b><small>Phiên đăng nhập tự hết hạn sau vài giờ để bảo mật.</small></div>
+            <div class="reportActions"><button type="button" onclick="adminLogout()">Đăng xuất</button></div>
+          </div>
+
+          <div class="appTabs" id="adminTabs"></div>
+          <div id="adminExtraActions"></div>
+
+          <div class="twoCol">
+            <section class="workPanel">
+              <div class="panelTitle">
+                <h2>Tìm để sửa / xoá</h2>
+                <small id="adminTabHint"></small>
+              </div>
+              <div class="searchControls" style="grid-template-columns:1fr 92px">
+                <input id="adminSearchKeyword" placeholder="Nhập từ khoá (bỏ trống để xem 30 dòng mới thêm gần nhất)">
+                <button type="button" onclick="adminSearch()">Tìm</button>
+              </div>
+              <div class="resultList" id="adminResults"></div>
+            </section>
+
+            <section class="workPanel">
+              <div class="panelTitle">
+                <h2 id="adminFormTitle">Thêm dòng mới</h2>
+                <small></small>
+              </div>
+              <div id="adminForm" class="formGrid"></div>
+              <div class="formActions">
+                <button type="button" onclick="adminResetForm()">Làm mới form</button>
+                <button class="primary" type="button" onclick="adminSaveRow()">Lưu</button>
+                <button id="adminDeleteBtn" type="button" style="background:#fdecea;color:#b42318;display:none" onclick="adminDeleteRow()">Xoá dòng này</button>
+              </div>
+              <p id="adminFormMsg" style="font-size:12px;margin-top:8px;color:var(--muted)"></p>
+            </section>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -313,7 +489,9 @@
     <div class="wrap footerGrid">
       <div>
         <b>KHOA DƯỢC – BỆNH VIỆN ĐA KHOA THÀNH PHỐ VINH</b>
-        <p>Địa chỉ: Số 115, Lê Hồng Phong, Hưng Bình, Thành phố Vinh, Nghệ An</p>
+        <p>Địa chỉ cs 1: Số 178, Trần Phú, phường Trường Vinh, Nghệ An</p>
+        <p>Địa chỉ cs 2: Số 31, đường Lê Ninh, phường Vinh Hưng, Nghệ An</p>
+        <p>Địa chỉ cs 3: Đường Nguyễn Huệ, phường Cửa Lò, Nghệ An</p>
       </div>
       <div>
         <b>CỔNG THÔNG TIN DLS</b>
@@ -321,11 +499,23 @@
       </div>
       <div>
         <b>Liên hệ</b>
-        <p>0238 3855 666 · khoaduoc@bvtp.vn</p>
+        <p>0862 778 634 · dls.bvdktpv@gmail.com</p>
+        <p><a href="#admin" data-page="admin" data-route="admin" onclick="showPage('admin')" style="color:#cde4e1;text-decoration:underline">Quản trị dữ liệu (nội bộ)</a></p>
       </div>
     </div>
   </footer>
   <div id="toast" role="status" aria-live="polite"></div>
-  <script src="script.js"></script>
+  <!-- Thứ tự load quan trọng: config/core trước, app-init.js load sau cùng vì nó gọi hàm từ mọi module khác -->
+  <script src="config.js"></script>
+  <script src="core.js"></script>
+  <script src="calculators.js"></script>
+  <script src="lookup.js"></script>
+  <script src="antibiotic.js"></script>
+  <script src="docs.js"></script>
+  <script src="phacdo.js"></script>
+  <script src="qlcl.js"></script>
+  <script src="globalsearch.js"></script>
+  <script src="admin.js"></script>
+  <script src="app-init.js"></script>
 </body>
 </html>
