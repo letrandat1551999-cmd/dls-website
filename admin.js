@@ -165,11 +165,6 @@ async function adminLogin(){
 }
 
 function adminLogout(){
-  // Thu hồi token ở server ngay lập tức (không chờ, không chặn luồng đăng xuất nếu lỗi mạng —
-  // token vẫn tự hết hạn theo TOKEN_TTL_SECONDS dù bước này thất bại).
-  if(adminToken){
-    fetch(ADMIN_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"logout",token:adminToken})}).catch(()=>{});
-  }
   adminToken="";adminName="";
   localStorage.removeItem("dls_admin_token");
   localStorage.removeItem("dls_admin_name");
@@ -357,6 +352,7 @@ function adminBuildForm(values){
       <input data-field="${f.key}" type="text" value="${escapeHtml(val)}" placeholder="${escapeHtml(f.label)}">
     </label>`;
   }).join("");
+  resolveApiImages(form); // ảnh ANH_DAI_DIEN + ảnh chèn trong richtext (nếu có) — tự tải lại để xem trước
 }
 
 /** Đổi lựa chọn ở khung "Nút bên dưới dẫn tới đâu": nếu chọn 1 trang có sẵn thì lấy đúng mã trang
@@ -414,6 +410,7 @@ function richInsertImage(){
       const url=await adminUploadImage(file);
       el.focus();
       document.execCommand("insertImage",false,url);
+      resolveApiImages(el); // tải lại ngay để thấy ảnh thật thay vì icon vỡ, không ảnh hưởng link gốc sẽ lưu (xem adminSaveRow)
     }catch(err){
       console.error(err);
       toast("Lỗi tải ảnh: "+err.message);
@@ -492,7 +489,7 @@ function adminPickImage(buttonEl){
     try{
       const url=await adminUploadImage(file);
       targetInput.value=url;
-      if(previewRow) previewRow.innerHTML=`<img src="${escapeHtml(url)}" alt="">`;
+      if(previewRow){ previewRow.innerHTML=`<img src="${escapeHtml(url)}" alt="">`; resolveApiImages(previewRow); }
       toast("Đã tải ảnh lên.");
     }catch(err){
       console.error(err);
@@ -536,7 +533,13 @@ async function adminSaveRow(){
     }
     const el=Array.from(inputs).find(i2=>i2.dataset.field===f.key);
     if(!el) return "";
-    if(f.type==="richtext") return sanitizeRichHtml(el.innerHTML).trim();
+    if(f.type==="richtext"){
+      // Ảnh trong nội dung có thể đang hiện dạng data: URI tạm (do resolveApiImages tải để xem
+      // trước) — khôi phục lại đúng link tham chiếu gốc (ADMIN_SCRIPT_URL?img=...) trước khi lưu,
+      // nếu không Sheet sẽ nhận 1 chuỗi base64 khổng lồ và vỡ giới hạn 50.000 ký tự/ô.
+      el.querySelectorAll("img[data-api-ref]").forEach(img=>{ img.src=img.dataset.apiRef; delete img.dataset.apiRef; });
+      return sanitizeRichHtml(el.innerHTML).trim();
+    }
     if(f.type==="checkbox") return el.checked ? "Có" : "";
     return el.value.trim();
   });

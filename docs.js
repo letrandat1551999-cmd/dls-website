@@ -98,6 +98,7 @@ function renderStaticDocSection(id){
   if(!section) return;
   box.innerHTML=buildSectionContentHtml(section,staticDocsIndex[id]);
   wrapContentTables(box);
+  resolveApiImages(box);
 }
 
 /* ---------------- Trang ADR riêng (thanh công cụ trên cùng, #adr) ----------------
@@ -126,6 +127,7 @@ function renderAdrPage(){
     </div>`:"";
   box.innerHTML=buildSectionContentHtml(ADR_SECTION,row)+formHtml;
   wrapContentTables(box);
+  resolveApiImages(box);
   loadExternalNews();
 }
 
@@ -239,6 +241,7 @@ function renderPosts(){
   }).join("");
 
   if(moreBtn) moreBtn.style.display = visible.length<filtered.length? "inline-flex":"none";
+  resolveApiImages(grid);
 }
 
 /** Vào trang riêng của 1 bài viết (gọi từ core.js route() khi hash là #baiviet-<mã>). Nếu dữ liệu
@@ -270,6 +273,7 @@ function renderPostDetail(slug){
       ${post.LINK_CONG_CU?`<div class="formActions"><a class="tag" style="min-height:40px;padding:0 16px" href="${escapeHtml(post.LINK_CONG_CU)}" target="_blank" rel="noopener">${escapeHtml(post.LINK_NHAN||"Xem thêm")} ↗</a></div>`:""}
     `;
     wrapContentTables(detailEl);
+    resolveApiImages(detailEl);
   }
   feedEl.style.display="none";
   detailEl.style.display="block";
@@ -385,9 +389,9 @@ function renderFeaturedPosts(){
 
   const featured=postsIndex.filter(p=>p.NOI_BAT==="Có"||p.NOI_BAT===true||p.NOI_BAT==="TRUE");
   clearInterval(featuredTimer);
-  if(!featured.length){ wrap.classList.remove("show"); carousel.innerHTML=""; return; }
+  if(!featured.length){ wrap.style.display="none"; carousel.innerHTML=""; return; }
 
-  wrap.classList.add("show");
+  wrap.style.display="block";
   featuredIndex=0;
   carousel.dataset.count=featured.length;
   carousel.innerHTML=`
@@ -413,6 +417,7 @@ function renderFeaturedPosts(){
     `:""}
   `;
   featuredApplyPosition();
+  resolveApiImages(carousel);
   if(featured.length>1){
     featuredStartAuto();
     carousel.onmouseenter=()=>clearInterval(featuredTimer);

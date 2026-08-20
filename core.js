@@ -78,6 +78,40 @@ function wrapContentTables(container){
   });
 }
 
+/** Ảnh tải lên qua Quản trị được lưu RIÊNG TƯ trên Drive (không bật "Anyone with the link" —
+    tài khoản cá nhân bị Google từ chối thao tác này), nên <img src> không thể trỏ thẳng vào Drive
+    được nữa. Thay vào đó src lưu dạng "ADMIN_SCRIPT_URL?img=<fileId>" — một URL gọi vào chính
+    Admin API, trả về JSON {base64, mimeType} thay vì ảnh thật (Apps Script Web App không trả được
+    byte ảnh gốc trực tiếp). Hàm này quét 1 khối DOM vừa render, tự tải và ghép lại thành data: URI
+    thật cho từng ảnh loại này. Gọi ngay sau khi gán innerHTML có thể chứa loại ảnh này.
+    Lưu ý: giữ lại URL gốc ở data-api-ref trước khi thay src — nơi LƯU nội dung richtext (admin.js
+    adminSaveRow) sẽ khôi phục lại đúng URL gốc này trước khi ghi vào Sheet, tránh lưu nhầm data:
+    URI khổng lồ (vỡ giới hạn 50.000 ký tự/ô của Google Sheets). */
+async function resolveApiImages(container){
+  if(!container || typeof ADMIN_SCRIPT_URL==="undefined" || !ADMIN_SCRIPT_URL) return;
+  const imgs=[...container.querySelectorAll("img")].filter(img=>{
+    const src=img.getAttribute("src")||"";
+    return src.indexOf(ADMIN_SCRIPT_URL)===0 && !img.dataset.apiRef;
+  });
+  if(!imgs.length) return;
+  await Promise.all(imgs.map(async img=>{
+    const ref=img.getAttribute("src");
+    try{
+      const res=await fetch(ref);
+      const data=await res.json();
+      if(data.ok && data.base64){
+        img.dataset.apiRef=ref;
+        img.src=`data:${data.mimeType||"image/jpeg"};base64,${data.base64}`;
+      }else{
+        img.style.display="none";
+      }
+    }catch(err){
+      console.error(err);
+      img.style.display="none";
+    }
+  }));
+}
+
 function showPage(name,updateHash=true){
   document.querySelectorAll(".page").forEach(page=>page.classList.remove("active"));
   const page=$("page-"+name);
