@@ -80,13 +80,76 @@ function wrapContentTables(container){
 
 /** Ảnh tải lên qua Quản trị được lưu RIÊNG TƯ trên Drive (không bật "Anyone with the link" —
     tài khoản cá nhân bị Google từ chối thao tác này), nên <img src> không thể trỏ thẳng vào Drive
-    được nữa. Thay vào đó src lưu dạng "ADMIN_SCRIPT_URL?img=<fileId>" — một URL gọi vào chính
-    Admin API, trả về JSON {base64, mimeType} thay vì ảnh thật (Apps Script Web App không trả được
-    byte ảnh gốc trực tiếp). Hàm này quét 1 khối DOM vừa render, tự tải và ghép lại thành data: URI
-    thật cho từng ảnh loại này. Gọi ngay sau khi gán innerHTML có thể chứa loại ảnh này.
+    được nữa. Thay vào đó src lưu dạng "ADMIN_SCRIPT_URL?img=<fileId>" — một tham chiếu tới Admin
+    API, không phải ảnh thật. Hàm resolveApiImages() bên dưới quét 1 khối DOM vừa render, lấy ảnh
+    thật về và ghép lại thành data: URI cho từng ảnh loại này. Gọi ngay sau khi gán innerHTML có
+    thể chứa loại ảnh này.
     Lưu ý: giữ lại URL gốc ở data-api-ref trước khi thay src — nơi LƯU nội dung richtext (admin.js
     adminSaveRow) sẽ khôi phục lại đúng URL gốc này trước khi ghi vào Sheet, tránh lưu nhầm data:
-    URI khổng lồ (vỡ giới hạn 50.000 ký tự/ô của Google Sheets). */
+    URI khổng lồ (vỡ giới hạn 50.000 ký tự/ô của Google Sheets).
+
+    TỐI ƯU TỐC ĐỘ (so với bản trước gọi 1 request/1 ảnh, rất chậm vì mỗi lần gọi Apps Script có độ
+    trễ khởi động riêng):
+      1) Cache 2 lớp — Map trong bộ nhớ (dùng lại ngay trong cùng 1 lượt xem trang, VD cùng 1 ảnh
+         xuất hiện ở nhiều khối) + IndexedDB (sống qua các lần tải lại trang/quay lại trang; ảnh
+         trên Drive gần như không đổi sau khi đăng nên cache dài hạn là an toàn).
+      2) Gộp nhiều ảnh còn thiếu (chưa có trong cache) thành 1 (hoặc vài, nếu quá nhiều) request
+         DUY NHẤT lên Apps Script (action "getImages"), thay vì 1 request riêng cho từng ảnh. */
+
+const API_IMG_BATCH_SIZE=12; // mỗi request "getImages" gộp tối đa từng này ảnh — đủ nhanh, không quá tải Apps Script
+const apiImageMemCache=new Map(); // fileId -> data URI, sống trong lúc mở trang
+
+function apiImageIdFromRef(ref){
+  try{ return new URL(ref, location.href).searchParams.get("img"); }
+  catch(err){ return null; }
+}
+
+const IMG_IDB_NAME="dls_img_cache", IMG_IDB_STORE="images";
+function imgIdbOpen(){
+  return new Promise((resolve,reject)=>{
+    if(!("indexedDB" in window)) return reject(new Error("no-indexeddb"));
+    const req=indexedDB.open(IMG_IDB_NAME,1);
+    req.onupgradeneeded=()=>req.result.createObjectStore(IMG_IDB_STORE);
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function imgIdbGet(id){
+  try{
+    const db=await imgIdbOpen();
+    return await new Promise((resolve,reject)=>{
+      const req=db.transaction(IMG_IDB_STORE,"readonly").objectStore(IMG_IDB_STORE).get(id);
+      req.onsuccess=()=>resolve(req.result||null);
+      req.onerror=()=>reject(req.error);
+    });
+  }catch(err){ return null; } // trình duyệt không hỗ trợ/lỗi -> coi như không có cache, vẫn tải qua mạng bình thường
+}
+async function imgIdbSet(id,dataUri){
+  try{
+    const db=await imgIdbOpen();
+    db.transaction(IMG_IDB_STORE,"readwrite").objectStore(IMG_IDB_STORE).put(dataUri,id);
+  }catch(err){ /* im lặng bỏ qua nếu đầy dung lượng hoặc trình duyệt không hỗ trợ */ }
+}
+
+async function fetchApiImagesBatch(ids){
+  const out={};
+  for(let i=0;i<ids.length;i+=API_IMG_BATCH_SIZE){
+    const chunk=ids.slice(i,i+API_IMG_BATCH_SIZE);
+    try{
+      const res=await fetch(ADMIN_SCRIPT_URL,{
+        method:"POST",
+        headers:{"Content-Type":"text/plain;charset=utf-8"}, // tránh preflight OPTIONS, giống adminApiCall()
+        body:JSON.stringify({action:"getImages",ids:chunk})
+      });
+      const data=await res.json();
+      if(data.ok && data.images) Object.assign(out,data.images);
+    }catch(err){
+      console.error(err);
+    }
+  }
+  return out;
+}
+
 async function resolveApiImages(container){
   if(!container || typeof ADMIN_SCRIPT_URL==="undefined" || !ADMIN_SCRIPT_URL) return;
   const imgs=[...container.querySelectorAll("img")].filter(img=>{
@@ -94,22 +157,35 @@ async function resolveApiImages(container){
     return src.indexOf(ADMIN_SCRIPT_URL)===0 && !img.dataset.apiRef;
   });
   if(!imgs.length) return;
+
+  const needIds=new Set();
   await Promise.all(imgs.map(async img=>{
     const ref=img.getAttribute("src");
-    try{
-      const res=await fetch(ref);
-      const data=await res.json();
-      if(data.ok && data.base64){
-        img.dataset.apiRef=ref;
-        img.src=`data:${data.mimeType||"image/jpeg"};base64,${data.base64}`;
-      }else{
-        img.style.display="none";
-      }
-    }catch(err){
-      console.error(err);
-      img.style.display="none";
-    }
+    img.dataset.apiRef=ref; // lưu lại URL gốc trước khi đổi src, dùng khi lưu richtext (xem admin.js)
+    const id=apiImageIdFromRef(ref);
+    if(!id){ img.style.display="none"; return; }
+    if(apiImageMemCache.has(id)){ img.src=apiImageMemCache.get(id); return; }
+    const cached=await imgIdbGet(id);
+    if(cached){ apiImageMemCache.set(id,cached); img.src=cached; return; }
+    needIds.add(id);
   }));
+
+  if(!needIds.size) return;
+  const ids=[...needIds];
+  const fetched=await fetchApiImagesBatch(ids);
+  ids.forEach(id=>{
+    const item=fetched[id];
+    if(item && item.ok && item.base64){
+      const dataUri=`data:${item.mimeType||"image/jpeg"};base64,${item.base64}`;
+      apiImageMemCache.set(id,dataUri);
+      imgIdbSet(id,dataUri);
+    }
+  });
+  imgs.forEach(img=>{
+    const id=apiImageIdFromRef(img.dataset.apiRef);
+    if(id && apiImageMemCache.has(id)) img.src=apiImageMemCache.get(id);
+    else if(id && needIds.has(id)) img.style.display="none";
+  });
 }
 
 function showPage(name,updateHash=true){
