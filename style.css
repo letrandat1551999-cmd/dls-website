@@ -513,6 +513,12 @@ footer{background:var(--green-dark);color:#fff}
 .reveal.inView{opacity:1;transform:translateY(0)}
 
 /* ===== Banner "Bài viết nổi bật" phóng to đặt ngay dưới hero (Trang chủ) ===== */
+/* Bù lại đúng phần margin-top:-30px của .introCards (khối 3 thẻ Khoa Dược/Dược lâm sàng/Cổng
+   thông tin) — nếu không, khối 3 thẻ sẽ đè lên đáy banner này thay vì đè lên hero như thiết kế
+   gốc, vì banner giờ nằm CHEN GIỮA hero và .introCards. Khi không có bài nổi bật, khối này bị ẩn
+   (display:none ở #featuredPostsWrap) nên margin-bottom cũng không chiếm chỗ, không ảnh hưởng gì
+   tới hiệu ứng đè-lên-hero mặc định. */
+#featuredPostsWrap{margin-bottom:30px}
 .featuredCarousel.banner{border-radius:24px}
 .featuredCarousel.banner .featuredSlide img,.featuredCarousel.banner .featuredSlideNoImg{height:340px}
 .featuredCarousel.banner .featuredSlideBody{padding:32px 36px}
