@@ -66,7 +66,7 @@ const STATIC_DOC_SECTIONS=[
   {id:"vanban-ql",label:"Văn bản QL sử dụng thuốc",defaultLink:"",defaultLinkLabel:""}
 ];
 
-/* Mục ADR — tách riêng khỏi 6 mục tĩnh ở trên vì giờ có hẳn 1 trang riêng trên thanh công cụ (#adr),
+/* Mục ADR — tách riêng khỏi 6 mục ở trên vì giờ có hẳn 1 trang riêng trên thanh công cụ (#adr),
    không còn nằm lồng trong tab Tài liệu nữa. Vẫn dùng chung cơ chế lưu nội dung tự soạn (nếu có) ở
    tab Sheet TAILIEU_TINH như các mục khác (khớp theo MUC = "sop-adr"), chỉ khác chỗ hiển thị. */
 const ADR_SECTION={
@@ -153,7 +153,7 @@ const ADMIN_TAB_SCHEMAS={
     ]
   },
   TAILIEU_TINH:{
-    label:"Tài liệu — 6 mục tĩnh",
+    label:"Tài liệu",
     fields:[
       {key:"MUC",label:"Thuộc mục nào",required:true,type:"select",
         options:STATIC_DOC_SECTIONS.concat([ADR_SECTION]).map(s=>({value:s.id,label:s.label}))},
