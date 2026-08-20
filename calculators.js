@@ -88,7 +88,7 @@ function renderRenalAssessment(crcl,egfr){
   }
   const doseText=crcl?`CrCl ${round(crcl,1)} mL/phút dùng ưu tiên cho hiệu chỉnh liều thuốc theo thận.`:"Chưa đủ dữ liệu CrCl để hiệu chỉnh liều thuốc.";
   const ckdText=egfr?`eGFR ${round(egfr,1)} mL/phút/1,73 m² tương ứng ${egfrGroup.label}.`:"Chưa đủ dữ liệu eGFR để phân tầng G.";
-  $("renalAdvice").textContent=`${doseText} ${ckdText} Cần phối hợp albumin niệu, thời gian kéo dài ≥3 tháng và bối cảnh lâm sàng nếu đánh giá bệnh thận mạn.`;
+  $("renalAdvice").textContent=`${doseText} ${ckdText} Cần phối đánh giá bối cảnh lâm sàng nếu đánh giá bệnh thận mạn.`;
 }
 
 function resetCalculators(){
