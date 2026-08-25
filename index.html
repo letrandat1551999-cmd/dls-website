@@ -382,15 +382,15 @@
           <button class="appTab" data-app="sglt2" type="button" onclick="switchApp('sglt2')"><span>03</span><b>🔒 Quản lý BN dùng SGLT2</b><small>Suy tim · suy thận</small></button>
         </div>
         <div class="appPanel" id="panel-report">
-          <div class="panelHead"><div><b>Báo cáo thuốc ngoại trú</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('report')">Làm mới</button><button type="button" onclick="fullscreen('reportFrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbzk2LUh-SeJfpfMlENiiqDb0Q3DK2dyrD6z3xSxFM-XtlQcn2KiXQa1Ce1eX1kIpVIZfg/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="panelHead"><div><b>Báo cáo thuốc ngoại trú</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('report')">Làm mới</button><button type="button" onclick="fullscreen('reportFrameWrap')">Toàn màn hình</button><a id="reportOpenLink" href="#" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="reportFrameWrap"><iframe id="reportFrame" title="Báo cáo thuốc ngoại trú" allow="fullscreen"></iframe></div>
         </div>
         <div class="appPanel active" id="panel-renal">
-          <div class="panelHead"><div><b>Hiệu chỉnh liều kháng sinh theo chức năng thận</b><small id="renalDataHint">Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('renal')">Làm mới</button><button type="button" onclick="fullscreen('renalFrameWrap')">Toàn màn hình</button><a id="renalOpenLink" href="https://script.google.com/macros/s/AKfycbzmrMFkvj35fryuGdzFT4ByH4PjYi6S6Peovm2xbajFds2nmK9KHUcm3TYX8KAFPnhe/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="panelHead"><div><b>Hiệu chỉnh liều kháng sinh theo chức năng thận</b><small id="renalDataHint">Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('renal')">Làm mới</button><button type="button" onclick="fullscreen('renalFrameWrap')">Toàn màn hình</button><a id="renalOpenLink" href="#" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="renalFrameWrap"><iframe id="renalFrame" title="Hiệu chỉnh liều kháng sinh theo chức năng thận" allow="fullscreen"></iframe></div>
         </div>
         <div class="appPanel" id="panel-sglt2">
-          <div class="panelHead"><div><b>🔒 Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('sglt2')">Làm mới</button><button type="button" onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a href="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec" target="_blank" rel="noopener">Mở riêng</a></div></div>
+          <div class="panelHead"><div><b>🔒 Quản lý BN sử dụng SGLT2 · Suy tim / suy thận</b><small>Google Apps Script</small></div><div class="reportActions"><button type="button" onclick="reloadApp('sglt2')">Làm mới</button><button type="button" onclick="fullscreen('sglt2FrameWrap')">Toàn màn hình</button><a id="sglt2OpenLink" href="#" target="_blank" rel="noopener">Mở riêng</a></div></div>
           <div class="appFrameWrap" id="sglt2FrameWrap"><iframe id="sglt2Frame" title="Quản lý BN sử dụng SGLT2" allow="fullscreen"></iframe></div>
         </div>
       </div>
