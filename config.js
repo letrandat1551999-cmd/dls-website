@@ -3,10 +3,6 @@
    schema các tab Quản trị, danh sách tài liệu. Sửa Sheet/thêm app/đổi schema
    thì chỉ cần sửa ở đây, không cần đụng vào logic các file khác. */
 
-/* URL Apps Script được lưu dạng base64 (KHÔNG phải mã hóa thật — chỉ chặn xem trực tiếp bằng mắt
-   khi lướt code/View Source/F12, ai chủ động chạy atob() trong Console vẫn giải mã được ngay).
-   Muốn đổi URL nào: dùng Console trình duyệt gõ btoa("URL_moi") để lấy chuỗi base64 mới, dán đè
-   vào đúng dòng tương ứng bên dưới. */
 const APPS_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6azJMVWgtU2VKZnBmTWxFTmlpcURiMFEzREsyZHlyRDZ6M3hTeEZNLVh0bFFjbjJLaVhRYTFDZTFlWDFrSXBWSVpmZy9leGVj");
 const RENAL_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6bXJNRmt2ajM1ZnJ5dUdkekZUNEJ5SDRQallpNlM2UGVvdm0yeGJhakZkczJubUs5S0hVY20zVFlYOEtBRlBuaGUvZXhlYw==");
 const SGLT2_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3QUVaZW51NWR5eHV6V1NMdGgyZXNnTjVTX2J4YndtWmhLNWhaNjNsLWwtRksyeEY1a0RuZUxfWGZaWmRWNW1HS2M0QS9leGVj");
