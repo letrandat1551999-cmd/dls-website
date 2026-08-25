@@ -3,9 +3,13 @@
    schema các tab Quản trị, danh sách tài liệu. Sửa Sheet/thêm app/đổi schema
    thì chỉ cần sửa ở đây, không cần đụng vào logic các file khác. */
 
-const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzk2LUh-SeJfpfMlENiiqDb0Q3DK2dyrD6z3xSxFM-XtlQcn2KiXQa1Ce1eX1kIpVIZfg/exec";
-const RENAL_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzmrMFkvj35fryuGdzFT4ByH4PjYi6S6Peovm2xbajFds2nmK9KHUcm3TYX8KAFPnhe/exec";
-const SGLT2_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwAEZenu5dyxuzWSLth2esgN5S_bxbwmZhK5hZ63l-l-FK2xF5kDneL_XfZZdV5mGKc4A/exec";
+/* URL Apps Script được lưu dạng base64 (KHÔNG phải mã hóa thật — chỉ chặn xem trực tiếp bằng mắt
+   khi lướt code/View Source/F12, ai chủ động chạy atob() trong Console vẫn giải mã được ngay).
+   Muốn đổi URL nào: dùng Console trình duyệt gõ btoa("URL_moi") để lấy chuỗi base64 mới, dán đè
+   vào đúng dòng tương ứng bên dưới. */
+const APPS_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6azJMVWgtU2VKZnBmTWxFTmlpcURiMFEzREsyZHlyRDZ6M3hTeEZNLVh0bFFjbjJLaVhRYTFDZTFlWDFrSXBWSVpmZy9leGVj");
+const RENAL_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6bXJNRmt2ajM1ZnJ5dUdkekZUNEJ5SDRQallpNlM2UGVvdm0yeGJhakZkczJubUs5S0hVY20zVFlYOEtBRlBuaGUvZXhlYw==");
+const SGLT2_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3QUVaZW51NWR5eHV6V1NMdGgyZXNnTjVTX2J4YndtWmhLNWhaNjNsLWwtRksyeEY1a0RuZUxfWGZaWmRWNW1HS2M0QS9leGVj");
 const APP_URLS={report:APPS_SCRIPT_URL,renal:RENAL_SCRIPT_URL,sglt2:SGLT2_SCRIPT_URL};
 const APP_LABELS={report:"Báo cáo thuốc ngoại trú",renal:"Hiệu chỉnh liều kháng sinh",sglt2:"Quản lý BN SGLT2"};
 /* 2 app này chỉ dành cho dược sĩ đã đăng nhập Quản trị (chứa số liệu nội bộ) — "Hiệu chỉnh liều
@@ -94,7 +98,7 @@ const EXTERNAL_NEWS_SOURCE_LABEL="Trung tâm DI & ADR Quốc gia";
 /* Quản trị dữ liệu (đăng nhập + sửa Google Sheet qua Apps Script):
    1) Deploy Apps Script "AdminApi_CodeGs.txt" thành Web App (xem hướng dẫn trong file đó).
    2) Dán URL Web App vào ADMIN_SCRIPT_URL bên dưới. */
-const ADMIN_SCRIPT_URL="https://script.google.com/macros/s/AKfycbx9ZSsb2iZz7QvOIj7y5WGHmD4Qa0ljnz1gMQgb1ex8yHMbGAIxRRE9KKlqYLqjgbYKYw/exec";
+const ADMIN_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4OVpTc2IyaVp6N1F2T0lqN3k1V0dIbUQ0UWEwbGpuejFnTVFnYjFleDh5SE1iR0FJeFJSRTlLS2xxWUxxamdiWUtZdy9leGVj");
 
 const ADMIN_TAB_SCHEMAS={
   THUOC:{
@@ -215,4 +219,3 @@ const ADMIN_TAB_SCHEMAS={
     ]
   }
 };
-
