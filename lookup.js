@@ -210,6 +210,16 @@ function labelType(type){
   return {thuoc:"Thuốc",hoatchat:"Hoạt chất",icd:"ICD-10",tuongtac:"Tương tác"}[type] || "Dữ liệu";
 }
 
+/** Mở trang Tra cứu với loại đã lọc sẵn — dùng cho các nút tắt ở Trang chủ (VD: "Thuốc", "ICD",
+    "ICD 10", "Thông tin thuốc", "Tương tác thuốc" đều quy về đây với type tương ứng). */
+function openSearchType(type){
+  showPage("search");
+  const typeSelect=$("searchType");
+  if(typeSelect) typeSelect.value=type;
+  if($("keyword")) $("keyword").value="";
+  doSearch();
+}
+
 function searchExact(code){
   $("keyword").value=code;
   $("searchType").value="icd";
