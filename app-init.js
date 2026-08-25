@@ -5,6 +5,11 @@
 
 
 document.addEventListener("DOMContentLoaded",()=>{
+  // Gán href cho nút "Mở riêng" bằng JS (thay vì in cứng URL trong index.html) — URL chỉ nằm trong
+  // config.js dưới dạng base64, đỡ lộ trực tiếp khi ai đó View Source/F12 xem thẳng index.html.
+  // (Link "renal" đã tự động qua updateRenalLink() ở calculators.js, không cần gán ở đây.)
+  const reportLink=$("reportOpenLink"); if(reportLink) reportLink.href=APP_URLS.report;
+  const sglt2Link=$("sglt2OpenLink"); if(sglt2Link) sglt2Link.href=APP_URLS.sglt2;
   document.querySelectorAll("[data-route]").forEach(link=>link.addEventListener("click",event=>{
     event.preventDefault();
     showPage(link.dataset.route);
