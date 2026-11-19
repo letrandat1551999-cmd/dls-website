@@ -94,7 +94,7 @@ const EXTERNAL_NEWS_SOURCE_LABEL="Trung tâm DI & ADR Quốc gia";
 /* Quản trị dữ liệu (đăng nhập + sửa Google Sheet qua Apps Script):
    1) Deploy Apps Script "AdminApi_CodeGs.txt" thành Web App (xem hướng dẫn trong file đó).
    2) Dán URL Web App vào ADMIN_SCRIPT_URL bên dưới. */
-const ADMIN_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4OVpTc2IyaVp6N1F2T0lqN3k1V0dIbUQ0UWEwbGpuejFnTVFnYjFleDh5SE1iR0FJeFJSRTlLS2xxWUxxamdiWUtZdy9leGVj");
+const ADMIN_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5Z1lZRHNKcG9xQlhSUmNsQXNQMlVOMGRJNjVFaWFIdjFzTTc1c2QxN242NjhRTXFkc01HbWxxLVBRaXFOcGdfRVkvZXhlYw==");
 
 const ADMIN_TAB_SCHEMAS={
   THUOC:{
