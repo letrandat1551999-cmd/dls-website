@@ -264,7 +264,7 @@ function renderAdminResults(rows){
       <small>${escapeHtml(sub)}</small>
       <div class="tagRow">
         <span class="tag link" onclick='adminEditRow(${r.row},${JSON.stringify(v).replace(/'/g,"&#39;")})'>Sửa</span>
-        <span class="tag danger link" onclick="adminConfirmDelete(${r.row},${JSON.stringify(String(title)).replace(/'/g,"&#39;")})">Xoá</span>
+        <span class="tag danger link" data-row="${r.row}" data-title="${escapeHtml(title)}" onclick="adminConfirmDelete(Number(this.dataset.row),this.dataset.title)">Xoá</span>
       </div>
     </article>`;
   }).join("");
