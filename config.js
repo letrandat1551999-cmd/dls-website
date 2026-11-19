@@ -4,8 +4,8 @@
    thì chỉ cần sửa ở đây, không cần đụng vào logic các file khác. */
 
 const APPS_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6azJMVWgtU2VKZnBmTWxFTmlpcURiMFEzREsyZHlyRDZ6M3hTeEZNLVh0bFFjbjJLaVhRYTFDZTFlWDFrSXBWSVpmZy9leGVj");
-const RENAL_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6bXJNRmt2ajM1ZnJ5dUdkekZUNEJ5SDRQallpNlM2UGVvdm0yeGJhakZkczJubUs5S0hVY20zVFlYOEtBRlBuaGUvZXhlYw==");
-const SGLT2_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3QUVaZW51NWR5eHV6V1NMdGgyZXNnTjVTX2J4YndtWmhLNWhaNjNsLWwtRksyeEY1a0RuZUxfWGZaWmRWNW1HS2M0QS9leGVj");
+const RENAL_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4bGRhZ05CNUp2NFNNb05NaTZIX1NfQ1d2YlQ0TEMxbW84aXJfazRfRnVpMWtDOV90X2otbkJmc0JWM3Q5TktaUnVwZy9leGVj");
+const SGLT2_SCRIPT_URL=atob("aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6dFRFcUMzWGtTRGR0NDVPSFNtcXEwU2lzUmRLVlBncmdGT0pWRWtRTk9DSTJ5TlhDeWUxdzFVWGxmaVNKbmpqREIvZXhlYw==");
 const APP_URLS={report:APPS_SCRIPT_URL,renal:RENAL_SCRIPT_URL,sglt2:SGLT2_SCRIPT_URL};
 const APP_LABELS={report:"Báo cáo thuốc ngoại trú",renal:"Hiệu chỉnh liều kháng sinh",sglt2:"Quản lý BN SGLT2"};
 /* 2 app này chỉ dành cho dược sĩ đã đăng nhập Quản trị (chứa số liệu nội bộ) — "Hiệu chỉnh liều
@@ -19,7 +19,7 @@ let pendingRenalData=null;
    2) Chia sẻ Sheet ở chế độ "Anyone with the link – Viewer".
    3) Copy ID Sheet trong URL: docs.google.com/spreadsheets/d/<ID>/edit → dán vào SEARCH_SHEET_ID.
    Sau đó chỉnh sửa trực tiếp trên Google Sheet sẽ tự cập nhật lên web (không cần sửa code, tải lại trang là thấy). */
-const SEARCH_SHEET_ID="10af2fwE99_ZXlGfWu5AXamdLoyZrIxz7L1IxUAP09xA";
+const SEARCH_SHEET_ID="19bP7tKhV5ALCZStOyjU67Pzx9CXrz5tBEnAljtIF3PA";
 const SEARCH_TABS={thuoc:"THUOC",hoatchat:"HOATCHAT",icd:"ICD",tuongtac:"TUONGTAC"};
 
 /* Tab "Tài liệu": 2 khu tách biệt, đều lấy dữ liệu từ Google Sheet (SEARCH_SHEET_ID ở trên),
