@@ -62,6 +62,25 @@ button{cursor:pointer}
   font-size:11px;
   line-height:1;
 }
+/* Mũi tên sổ xuống: to hơn, có nền tròn, xoay khi mở menu */
+#nav button span.caret{
+  width:22px;
+  height:22px;
+  margin-left:8px;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(8,117,107,.14);
+  color:var(--green);
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+#nav button span.caret svg{display:block}
+#nav button:hover span.caret,.navDrop:hover span.caret,.navDrop:focus-within span.caret{background:var(--green);color:#fff}
+.navDrop:hover span.caret,.navDrop:focus-within span.caret{transform:rotate(180deg)}
+@media(max-width:1000px){
+  #nav button span.caret{width:28px;height:28px;margin-left:auto}
+  #nav button span.caret svg{width:16px;height:16px}
+  #nav button{display:flex;align-items:center;justify-content:space-between;width:100%}
+}
 #nav a:hover,#nav button:hover,#nav .active{background:var(--green-soft);color:var(--green)}
 .menuBtn{display:none;border:0;border-radius:12px;background:var(--green);color:#fff;width:42px;height:42px;font-size:24px}
 .navDrop{position:relative}
